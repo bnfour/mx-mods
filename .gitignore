@@ -1,0 +1,4 @@
+*/obj
+*/bin
+references/*
+!references/.gitkeep
