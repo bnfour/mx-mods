@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experimental", "Experimental\Experimental.csproj", "{94C5A89E-80B7-4F82-94F1-3D1335242AEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HiddenCursor", "HiddenCursor\HiddenCursor.csproj", "{51216CD2-9AC0-4456-AD70-A8FC4CA3382B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{94C5A89E-80B7-4F82-94F1-3D1335242AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94C5A89E-80B7-4F82-94F1-3D1335242AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94C5A89E-80B7-4F82-94F1-3D1335242AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51216CD2-9AC0-4456-AD70-A8FC4CA3382B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51216CD2-9AC0-4456-AD70-A8FC4CA3382B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51216CD2-9AC0-4456-AD70-A8FC4CA3382B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51216CD2-9AC0-4456-AD70-A8FC4CA3382B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
