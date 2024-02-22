@@ -9,11 +9,21 @@ public class VSyncAnnihilatorMod : MelonMod
 
     public bool ApproveChange { get; private set; }
 
+    private MelonPreferences_Category _prefsCategory;
+    private MelonPreferences_Entry<int> _prefsEntry;
+
     public override void OnInitializeMelon()
     {
         base.OnInitializeMelon();
-        // TODO make framerate configurable
-        Sudo(() => Application.targetFrameRate = 240);
+
+        _prefsCategory = MelonPreferences.CreateCategory("Bnfour_VSyncAnnihilator");
+        _prefsEntry = _prefsCategory.CreateEntry("TargetFramerate", 240,
+            "Target framerate override", "Frame limit not related to vSync. 0 for no limit -- the game will run as fast as it can, may break.");
+
+        if (_prefsEntry.Value > 0)
+        {
+            Sudo(() => Application.targetFrameRate = _prefsEntry.Value);
+        }
 
         if (QualitySettings.vSyncCount != 0)
         {
