@@ -1,4 +1,4 @@
-Unofficial quality of life modifications for the PC version of the hit video game Musynx (sometimes also known as Musync) using MelonLoader.
+Unofficial quality of life modifications for the PC version of the hit video game Musynx (stylized as MUSYNX, sometimes also known as Musync) using MelonLoader.
 
 # Disclaimers
 - These mods are unofficial and are not associated with, related to, and/or endorsed by I-Inferno and/or Wave Game.
@@ -6,7 +6,7 @@ Unofficial quality of life modifications for the PC version of the hit video gam
 - Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
-There are currently three mods available in this repo: two are interface enhancements, and another one can be used to disable vSync and other FPS caps that are otherwise baked pretty deep into the game.
+There are currently three mods available in this repo: two are interface enhancements, and another one can be used to disable vSync and other FPS caps that are otherwise baked into the game.
 
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
@@ -15,8 +15,7 @@ There are currently three mods available in this repo: two are interface enhance
 ## Optional options
 Mod file: `OptionalOptions.dll`
 
-This mod skips the settings screen on song select by default, starting the game using saved settings for
-TODO play mode, speed, what else is there even i can't remember LULE
+This mod skips the settings screen on song select by default, starting the game using saved settings for theme, speed, and offsets.
 
 TODO video demo?
 
@@ -26,7 +25,7 @@ To access the settings screen, hold Shift key when starting a song.
 Mod file: `HiddenCursor.dll`
 
 This mod hides the cursor during gameplay, preventing stuff like this:
-TODO screenshot
+![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/annoying-cursor.png)
 
 The cursor is still shown when the game is paused, and in all other screens.
 
@@ -49,8 +48,8 @@ python resource-patcher.py path/to/steam/common/MUSYNX/MUSYNX_Data/globalgameman
 ```
 where `path/to/steam` is actual path to your Steam library. Please make sure to target `globalgamemanagers` file (no extension), not `globalgamemanagers.assets` or `globalgamemanagers.assets.resS`.
 
-If the preset was patched successfully, its name in the setup will change:
-TODO screenshot
+If the preset was patched successfully, its name in setup will change:
+![yay](readme-images/patched-preset.png)
 
 Select it to start the game without vSync. The actual mod, if installed, will keep it disabled. (Without it, the game will eventually turn it on again, and/or force the 60 FPS cap.)
 
