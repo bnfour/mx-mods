@@ -17,7 +17,11 @@ Mod file: `OptionalOptions.dll`
 
 This mod skips the settings screen on song select by default, starting the game using saved settings for theme, speed, and offsets.
 
-TODO video demo?
+Selecting a song with this mod will look like this:
+
+TODO include the video via github web interface
+
+In this video, you can see [Hidden cursor](#hidden-cursor) kicking in as well.
 
 To access the settings screen, hold Shift key when starting a song.
 
@@ -46,7 +50,7 @@ The script is written in Python, so you'll need a reasonably recent version of i
 ```bash
 python resource-patcher.py path/to/steam/common/MUSYNX/MUSYNX_Data/globalgamemanagers
 ```
-where `path/to/steam` is actual path to your Steam library. Please make sure to target `globalgamemanagers` file (no extension), not `globalgamemanagers.assets` or `globalgamemanagers.assets.resS`.
+where `path/to/steam` is actual path to your Steam library. Please make sure to target `globalgamemanagers` file (no extension), **not** `globalgamemanagers.assets`, and **not** `globalgamemanagers.assets.resS`.
 
 If the preset was patched successfully, its name in setup will change:
 ![yay](readme-images/patched-preset.png)
