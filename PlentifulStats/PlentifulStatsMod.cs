@@ -13,6 +13,18 @@ public class PlentifulStatsMod : MelonMod
     internal bool SeparateExacts => _separateExactsEnabled.Value;
     internal bool PrevBest => _prevBestEnabled.Value;
 
+    /// <summary>
+    /// Stores the previous high score for a song to display on the stats screen
+    /// if <see cref="PrevBest"/> is enabled.
+    /// </summary>
+    internal int SyncNumber { get; set; }
+
+    /// <summary>
+    /// Stores the instance to hook the method in.
+    /// Here to share between diffrent patches.
+    /// </summary>
+    internal SongSaveInfo WorkingInstance { get; set; }
+
     public override void OnInitializeMelon()
     {
         base.OnInitializeMelon();
