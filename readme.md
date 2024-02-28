@@ -51,7 +51,7 @@ Features include:
 (not pictured; also, due to implementation quirks, works with the in-game pause menu, too)
 
 ### Configuration
-All features of the mod can be toggled on and off independently via the preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
 [Bnfour_PlentifulStats]
 # Enables R key to restart from the stats screen.
@@ -64,17 +64,17 @@ PrevBest = true
 
 Set to `false` to disable a feature.
 
-## VSync Annihilator
+## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
 
 > [!WARNING]
 > Please read the full description before installing!
 >
-> If you're content with your framerate, just skip this mod.
+> If you are content with your framerate, just skip this mod.
 >
->It's intended for setups where, [for whatever reason](https://youtu.be/iYWzMvlj2RQ), vSync FPS cap does not match actual display FPS. For me, vSync is set to 120 FPS even though I use 240 Hz display (it's also 120 FPS on other non-120 Hz displays I have). Again, if you never thought you should change your FPS, this mod is not for you.
+>This mod is intended for setups where, [for whatever reason](https://youtu.be/iYWzMvlj2RQ), vSync FPS cap does not match actual display FPS. For me, vSync is set to 120 FPS even though I use 240 Hz display (it's also 120 FPS on other non-120 Hz displays I have). Again, if you never thought you should change your FPS, this mod is not for you.
 
-This mod disables vSync (and capping FPS to 60, usually overrided by active vSync) in game, providing a changeable custom FPS cap instead.
+This mod disables vSync (and capping FPS to 60, usually overriden by active vSync) in game, providing a changeable custom FPS cap instead.
 
 ### Installation
 The game engine generally does not like changing the vSync setting at runtime — it may cause lags. All default game's quality presets enable vSync. The solution is to use the provided script, `resource-patcher.py`, to patch the highest quality preset to remove vSync. The mod will warn you in the console if this step was skipped. After an update to the game, the file should probably be patched again.
@@ -92,7 +92,7 @@ If the preset was patched successfully, its name in setup will change:
 
 Select it to start the game without vSync. The actual mod, if installed, will keep it disabled. (Without it, the game will eventually turn it on again, and/or force the 60 FPS cap.)
 
-The `globalgamemanagers` file can be restored to original state by running the script on it again or using Steam's "verify integrity of game files" feature.
+The `globalgamemanagers` file can be restored to its original state by running the script on it again or using Steam's "verify integrity of game files" feature.
 
 ### Configuration
 The mod's custom FPS cap (240 by default — solely because it's the value I use) can be adjusted via MelonLoader's preferences framework. Launching the game with the mod installed should generate the following section in `UserData/MelonPreferences.cfg` (you can also put it here in advance):
@@ -107,7 +107,7 @@ The value of `TargetFramerate`, if non-zero, is passed to the engine as [`Applic
 If the config value is zero, the game runs as fast as it can. I wouldn't recommend this, as with really high FPS (I got 1500+) things seem to be messed up. Also note that, for technical reasons, the resulting FPS may differ from the cap (for me, 600 FPS cap results in about 640 FPS in game, and 240 FPS cap is 246 actual FPS).
 
 ## Experimental mod
-This is not a mod intended for using. Rather, it's a developmental test bed for me to test random stuff without changing existing proper mods. All current mods (except Plentiful stats) were prototyped as a single do-it-all unimaginable horror abomination here first and then rewritten to be modular cute things currently present.
+This is not a mod intended for using. Rather, it's a developmental test bed for me to test random stuff without changing existing proper mods. All current mods (except Plentiful stats) were prototyped as a single do-it-all unimaginable horror abomination here first and then rewritten to be modular cute things currently available in this repo.
 
 The project contains the bare minimum for a mod that is successfully loaded; it does nothing except posting a single message in the log.
 
@@ -116,7 +116,7 @@ These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you
 Once you have MelonLoader installed, drop the DLLs of desired mods into the `Mods` folder. Remove to uninstall.  
 
 > [!NOTE]
-> For VSync annhilator (if you need it: probably not), refer to its own [installation section](#installation) for additional instructions.
+> For VSync annihilator (if you need it: probably not), refer to its own [installation section](#installation) for additional instructions.
 
 Rather than downloading these, I suggest (reviewing the source and) building them yourself — this way you'll be sure the mods behave as described. See ["Building from source"](#building-from-source).  
 Otherwise, please verify the downloads.
@@ -159,9 +159,9 @@ If none of these helps, feel free to submit an issue, unless it's already have b
 ### There's nothing in the console after the actual game starts?
 _tl;dr: `tail -f MelonLoader/Latest.log`_
 
-For whatever reason, the built-in MelonLoader console does not display logs after the game (as opposed to the config app) starts. This includes messages about loading the mods and any messages they produce.
+For whatever reason, the built-in MelonLoader console does not display logs after the game (as opposed to the config app) starts. This includes messages about loading the mods and any messages (warnings, errors) they produce.
 
-The log file, located at `MelonLoader/Latest.log`, is still updated in real time with all data. You can use any tool to monitor the file.
+The log file, located at `MelonLoader/Latest.log`, is still updated in real time. You can use any tool to monitor the file contents, such as ubiquitous `tail`, for example.
 
 # Building from source
 This repo is a run-of-the-mill .NET solution targeting .NET 4.7.2.
