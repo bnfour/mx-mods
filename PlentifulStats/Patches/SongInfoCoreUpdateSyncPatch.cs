@@ -19,12 +19,12 @@ public class SongInfoCoreUpdateSyncPatch
         var modInstance = Melon<PlentifulStatsMod>.Instance;
         if (modInstance.PrevBest)
         {
-            modInstance.WorkingInstance = ___saveInfo;
+            modInstance.SongId = Traverse.Create(___saveInfo).Property<int>("SongId").Value;
         }
     }
 
     internal static void Postfix()
     {
-        Melon<PlentifulStatsMod>.Instance.WorkingInstance = null;
+        Melon<PlentifulStatsMod>.Instance.SongId = null;
     }
 }

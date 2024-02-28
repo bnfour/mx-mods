@@ -14,11 +14,15 @@ public class SongSaveInfoSyncNumberGetterPatch
     internal static void Postfix(int __result, SongSaveInfo __instance)
     {
         var modInstance = Melon<PlentifulStatsMod>.Instance;
-        // WorkingInstance being not null implies that the feature is turned on,
-        // see the patch that sets it -- no need to check mod's PrevBest again
-        if (modInstance.WorkingInstance != null && __instance == modInstance.WorkingInstance)
+        // SongId being not null implies PrevBest being true (see SongInfoCoreUpdateSyncPatch),
+        // no need to check it here again
+        if (modInstance.SongId.HasValue)
         {
-            modInstance.SyncNumber = __result;
+            var songId = Traverse.Create(__instance).Property<int>("SongId").Value;
+            if (songId == modInstance.SongId.Value)
+            {
+                modInstance.SyncNumber = __result;
+            }
         }
     }
 }
