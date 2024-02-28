@@ -20,7 +20,7 @@ This mod skips the settings screen on song select by default, starting the game 
 
 Selecting a song with this mod will look like this:
 
-TODO include the video via github web interface
+https://github.com/bnfour/mx-mods/assets/853426/4dc917ce-85bf-4dc7-aec3-4a541e530e36
 
 In this video, you can see [Hidden cursor](#hidden-cursor) kicking in as well.
 
