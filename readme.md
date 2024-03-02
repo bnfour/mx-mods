@@ -30,6 +30,7 @@ To access the settings screen, hold Shift key when starting a song.
 Mod file: `HiddenCursor.dll`
 
 This mod hides the cursor during gameplay, preventing stuff like this:
+
 ![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/annoying-cursor.png)
 
 The cursor is still shown when the game is paused, and in all other screens.
@@ -88,6 +89,7 @@ python resource-patcher.py path/to/steam/common/MUSYNX/MUSYNX_Data/globalgameman
 where `path/to/steam` is actual path to your Steam library. Please make sure to target `globalgamemanagers` file (no extension), **not** `globalgamemanagers.assets`, and **not** `globalgamemanagers.assets.resS`.
 
 If the preset was patched successfully, its name in setup will change:
+
 ![yay](readme-images/patched-preset.png)
 
 Select it to start the game without vSync. The actual mod, if installed, will keep it disabled. (Without it, the game will eventually turn it on again, and/or force the 60 FPS cap.)
