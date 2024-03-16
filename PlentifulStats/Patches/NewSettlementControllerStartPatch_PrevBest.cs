@@ -10,7 +10,7 @@ namespace Bnfour.MusynxMods.PlentifulStats.Patches;
 /// </summary>
 // a private method again
 [HarmonyPatch(typeof(NewSettlementController), "Start")]
-public class NewSettlementControllerStartPatch
+public class NewSettlementControllerStartPatch_PrevBest
 {
     internal static void Prefix(NewSettlementController __instance)
     {
