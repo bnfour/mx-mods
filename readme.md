@@ -38,18 +38,34 @@ The cursor is still shown when the game is paused, and in all other screens.
 ## Plentiful stats
 Mod file: `PlentifulStats.dll`
 
-This mod adds some extra features for the stats screen after a song has been played:
+This mod adds some extra features and fixes for the stats screen after a song has been played; all can be independently turned on or off.
+
+### Available features
+
+#### Extra data
+The statistics display is changed:
+
 | Before | After |
 | --- | --- |
 | ![i tend to get one great in any rhythm game i play](readme-images/vanilla-stats.png) | ![almost 122 and still one great smh my head](readme-images/cool-stats.png) |
 
-Features include:
+
 1. Blue exacts are counted separately from cyan exacts  
 (top middle of the pictures)
 2. Previous best score is shown alongside the current one  
 (bottom middle of the pictures)
-3. R key can be used to restart the song alongside F1 key  
-(not pictured; also, due to implementation quirks, works with the in-game pause menu, too)
+
+#### Extra keybind
+R key can be used to restart the song alongside F1 key. Due to implementation quirks, works with the in-game pause menu, too!
+
+#### Localization fix
+This feature (more of an unofficial bugfix, actually 🤓) changes the "NEXT" button being "继续" when the score is 120% or more and language other than Chinese is used:
+
+| Lower score reference | Before | After |
+| --- | --- | --- |
+| ![image trivia: this is a relatively old screenshot i took when i just started playing](readme-images/en_next-reference.png) | ![this is a slightly older screenshot](readme-images/en_next-unfixed.png) | ![and this is a recent one, obviously](readme-images/en_next-fixed.png) |
+
+I'd love to see an official fix for this implemented. ٩(◕‿◕)۶
 
 ### Configuration
 All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
@@ -61,6 +77,8 @@ RToRestart = true
 SeparateExacts = true
 # Displays previous best score at the stats screen.
 PrevBest = true
+# Fixes Next button switching to Chinese on 120+ scores.
+EnNextFix = true
 ```
 
 Set to `false` to disable a feature.
