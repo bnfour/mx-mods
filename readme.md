@@ -91,15 +91,17 @@ Mod file: `VSyncAnnihilator.dll`
 >
 > If you are content with your framerate, just skip this mod.
 >
->This mod is intended for setups where, [for whatever reason](https://youtu.be/iYWzMvlj2RQ), vSync FPS cap does not match actual display FPS. For me, vSync is set to 120 FPS even though I use 240 Hz display (it's also 120 FPS on other non-120 Hz displays I have). Again, if you never thought you should change your FPS, this mod is not for you.
+>This mod is intended for setups where both vSync FPS and FPS cap presets (60 and 120 available as of 2024-04-30 update) do not match actual display FPS. For me, [for whatever reason](https://youtu.be/iYWzMvlj2RQ), vSync is set to 120 FPS even for a 240 Hz display.
+>
+> Again, if you never thought you should change your FPS, this mod is not for you.
 
-This mod disables vSync (and capping FPS to 60, usually overriden by active vSync) in game, providing a changeable custom FPS cap instead.
+This mod disables vSync before the game even starts for _allegedly_ better performance, and provides a custom FPS cap instead of vanilla 60/120.
 
 ### Installation
-The game engine generally does not like changing the vSync setting at runtime — it may cause lags. All default game's quality presets enable vSync. The solution is to use the provided script, `resource-patcher.py`, to patch the highest quality preset to remove vSync. The mod will warn you in the console if this step was skipped. After an update to the game, the file should probably be patched again.
+The game engine _allegedly_ does not like changing the vSync setting at runtime — it may cause lags. All default game's quality presets enable vSync. The solution is to use the provided script, `resource-patcher.py`, to patch the highest quality preset to remove vSync. The mod will warn you in the console if this step was skipped. After an update to the game, the file must be patched again.
 
 > [!TIP]
-> The script is written in Python, so you'll need a reasonably recent version of it installed.
+> The patching script is written in Python, so you'll need a reasonably recent version of it installed.
 
 ```bash
 python resource-patcher.py path/to/steam/common/MUSYNX/MUSYNX_Data/globalgamemanagers
@@ -110,7 +112,7 @@ If the preset was patched successfully, its name in setup will change:
 
 ![yay](readme-images/patched-preset.png)
 
-Select it to start the game without vSync. The actual mod, if installed, will keep it disabled. (Without it, the game will eventually turn it on again, and/or force the 60 FPS cap.)
+Select it to start the game without vSync. The actual mod, if installed, will keep it disabled. (Without the mod, the game may eventually turn it on again, and/or force the 60/120 FPS cap found in its settings.)
 
 The `globalgamemanagers` file can be restored to its original state by running the script on it again or using Steam's "verify integrity of game files" feature.
 
