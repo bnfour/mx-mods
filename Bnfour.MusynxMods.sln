@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSyncAnnihilator", "VSyncAn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlentifulStats", "PlentifulStats\PlentifulStats.csproj", "{52711CED-2EA3-4528-B44F-EE705FD848C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinTweaks", "SkinTweaks\SkinTweaks.csproj", "{D5061DD9-9026-473E-9EFA-58628F967508}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{52711CED-2EA3-4528-B44F-EE705FD848C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52711CED-2EA3-4528-B44F-EE705FD848C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52711CED-2EA3-4528-B44F-EE705FD848C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5061DD9-9026-473E-9EFA-58628F967508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5061DD9-9026-473E-9EFA-58628F967508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5061DD9-9026-473E-9EFA-58628F967508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5061DD9-9026-473E-9EFA-58628F967508}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
