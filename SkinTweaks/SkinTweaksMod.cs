@@ -16,6 +16,6 @@ public class SkinTweaksMod : MelonMod
         _prefsCategory = MelonPreferences.CreateCategory("Bnfour_SkinTweaks");
 
         _mountainRemovalEnabled = _prefsCategory.CreateEntry("MountainRemoval", true,
-            "Mountain removal", "Removes moving white mountain overlays from UI0D.");
+            "Mountain removal", "Removes moving white mountain overlays from Ink2D.");
     }
 }
