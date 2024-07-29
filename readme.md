@@ -11,6 +11,7 @@ There are currently four mods available in this repo: three are interface enhanc
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
 - [Plentiful stats](#plentiful-stats) — provides some data for the stats screen
+- [Skin tweaks](#skin-tweaks) — improvemets for some of the skins
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
@@ -79,6 +80,46 @@ SeparateExacts = true
 PrevBest = true
 # Fixes Next button switching to Chinese on 120+ scores.
 EnNextFix = true
+```
+
+Set to `false` to disable a feature.
+
+## Skin tweaks
+Mod file: `SkinTweaks.dll`
+
+This is a collection of improvements to in-game skins. All features can be turned on and off separately.
+
+### Available features
+
+#### Disabled mountain overlay for Ink2D
+This disables the moving mountain overlay images on Ink2D for cleaner looks. I also find their sudden disappearance quite jarring (but you don't have to agree with me).
+
+| Before | After |
+| --- | --- |
+| ![i tried to take similar screenshots, but it's not perfect](readme-images/SkinTweaks/UI0D_before.jpg) | ![once again, sorry for potato quality](readme-images/SkinTweaks/UI0D_after.jpg) |
+
+#### Improved long note scoring for Techno2D (and probably STG2D)
+This updates the score display present on Techno2D and STG2D whenever the long note is played at least partially. On some charts, long notes at the very end make skin's display score inconsistent with final results:
+
+todo before video
+
+(Results screen modified by [Plentiful stats](#plentiful-stats))
+
+Compare with the score being updated on long note releases:
+
+todo after video
+
+>![WARNING]
+> STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
+
+### Configuration
+All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+```toml
+[Bnfour_SkinTweaks]
+# Removes moving white mountain overlays from Ink2D.
+MountainRemoval = true
+# Updates the score display on Techno2D and STG2D when long notes end.
+LongNoteEndScoring = true
 ```
 
 Set to `false` to disable a feature.
