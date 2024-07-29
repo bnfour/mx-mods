@@ -1,3 +1,4 @@
+using Bnfour.MusynxMods.SkinTweaks.Utilities;
 using HarmonyLib;
 using MelonLoader;
 
@@ -34,7 +35,7 @@ public class UI0A_LongNoteScriptEndKnockPatch
         // and another patch already updated the UI with relevant score value
         if (!__state && ___knocking)
         {
-            // soon™
+            ScoreUpdater.Update(__instance);
         }
     }
 }

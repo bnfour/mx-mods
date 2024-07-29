@@ -1,3 +1,4 @@
+using Bnfour.MusynxMods.SkinTweaks.Utilities;
 using HarmonyLib;
 using MelonLoader;
 
@@ -16,7 +17,7 @@ public class UI0A_LongNoteScriptLiftUpPatch
     {
         if (Melon<SkinTweaksMod>.Instance.LongNotesEndScoring)
         {
-            // soon™
+            ScoreUpdater.Update(__instance);
         }
     }
 }
