@@ -16,6 +16,6 @@ public class SkinTweaksMod : MelonMod
         _prefsCategory = MelonPreferences.CreateCategory("Bnfour_SkinTweaks");
 
         _longNotesEndScoringEnabled = _prefsCategory.CreateEntry("LongNoteEndScoring", true,
-            "Update display score on long note end", "Updates the score display on UI0A when long notes end.");
+            "Update display score on long note end", "Updates the score display on Techno2D when long notes end.");
     }
 }

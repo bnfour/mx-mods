@@ -40,7 +40,7 @@ public class UI0X_LongNoteScriptEndKnockPatch
     {
         // whether the feature is enabled at all is checked by prefix,
         // __state being true means the actual method did nothing and/or this feature is disabled;
-        // UI0A_LongNoteScript.knocking is also checked: if it's false, the note was dropped mid-way,
+        // UI0*_LongNoteScript.knocking is also checked: if it's false, the note was dropped mid-way,
         // and another patch already updated the UI with relevant score value
         if (!__state && ___knocking)
         {

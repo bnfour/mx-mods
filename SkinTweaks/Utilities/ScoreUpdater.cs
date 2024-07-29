@@ -21,7 +21,7 @@ internal static class ScoreUpdater
     internal static void Update(MonoBehaviour parentScript)
     {
         // different skins have different lengths of display score,
-        // 9 for UI0A, 6 for UI0E
+        // 9 for UI0A (Techno2D), 6 for UI0E (STG2D)
         var multiplier = parentScript is UI0A_LongNoteScript ? 100000000f
             : parentScript is UI0E_LongNoteScript ? 100000f
             : throw new ApplicationException("Unsupported skin's LongNotScript is passed");
