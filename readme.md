@@ -31,7 +31,7 @@ Mod file: `HiddenCursor.dll`
 
 This mod hides the cursor during gameplay, preventing stuff like this:
 
-![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/annoying-cursor.png)
+![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/HiddenCursor/annoying-cursor.png)
 
 The cursor is still shown when the game is paused, and in all other screens.
 
@@ -47,7 +47,7 @@ The statistics display is changed:
 
 | Before | After |
 | --- | --- |
-| ![i tend to get one great in any rhythm game i play](readme-images/vanilla-stats.png) | ![almost 122 and still one great smh my head](readme-images/cool-stats.png) |
+| ![i tend to get one great in any rhythm game i play](readme-images/PlentifulStats/vanilla-stats.png) | ![almost 122 and still one great smh my head](readme-images/PlentifulStats/cool-stats.png) |
 
 
 1. Blue exacts are counted separately from cyan exacts  
@@ -63,7 +63,7 @@ This feature (more of an unofficial bugfix, actually 🤓) changes the "NEXT" bu
 
 | Lower score reference | Before | After |
 | --- | --- | --- |
-| ![image trivia: this is a relatively old screenshot i took when i just started playing](readme-images/en_next-reference.png) | ![this is a slightly older screenshot](readme-images/en_next-unfixed.png) | ![and this is a recent one, obviously](readme-images/en_next-fixed.png) |
+| ![image trivia: this is a relatively old screenshot i took when i just started playing](readme-images/PlentifulStats/en_next-reference.png) | ![this is a slightly older screenshot](readme-images/PlentifulStats/en_next-unfixed.png) | ![and this is a recent one, obviously](readme-images/PlentifulStats/en_next-fixed.png) |
 
 I'd love to see an official fix for this implemented. ٩(◕‿◕)۶
 
@@ -110,7 +110,7 @@ where `path/to/steam` is actual path to your Steam library. Please make sure to 
 
 If the preset was patched successfully, its name in setup will change:
 
-![yay](readme-images/patched-preset.png)
+![yay](readme-images/VSyncAnnihilator/patched-preset.png)
 
 Select it to start the game without vSync. The actual mod, if installed, will keep it disabled. (Without the mod, the game may eventually turn it on again, and/or force the 60/120 FPS cap found in its settings.)
 
@@ -129,7 +129,7 @@ The value of `TargetFramerate`, if non-zero, is passed to the engine as [`Applic
 If the config value is zero, the game runs as fast as it can. I wouldn't recommend this, as with really high FPS (I got 1500+) things seem to be messed up. Also note that, for technical reasons, the resulting FPS may differ from the cap (for me, 600 FPS cap results in about 640 FPS in game, and 240 FPS cap is 246 actual FPS).
 
 ## Experimental mod
-This is not a mod intended for using. Rather, it's a developmental test bed for me to test random stuff without changing existing proper mods. All current mods (except Plentiful stats) were prototyped as a single do-it-all unimaginable horror abomination here first and then rewritten to be modular cute things currently available in this repo.
+This is not a mod intended for using. Rather, it's a developmental test bed for me to test random stuff without changing existing proper mods. A few first mods were prototyped as a single do-it-all unimaginable horror abomination here first and then rewritten to be modular cute things currently available in this repo; newer ones also were prototyped here.
 
 The project contains the bare minimum for a mod that is successfully loaded; it does nothing except posting a single message in the log.
 
