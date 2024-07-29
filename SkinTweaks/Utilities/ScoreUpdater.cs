@@ -1,5 +1,6 @@
 using System;
 using HarmonyLib;
+using UnityEngine;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Utilities;
 
@@ -17,8 +18,14 @@ internal static class ScoreUpdater
     /// and calls a method to update the display.
     /// </summary>
     /// <param name="parentScript">A LongNoteScript from which mod's patches were fired.</param>
-    internal static void Update(UI0A_LongNoteScript parentScript)
+    internal static void Update(MonoBehaviour parentScript)
     {
+        // different skins have different lengths of display score,
+        // 9 for UI0A, 6 for UI0E
+        var multiplier = parentScript is UI0A_LongNoteScript ? 100000000f
+            : parentScript is UI0E_LongNoteScript ? 100000f
+            : throw new ApplicationException("Unsupported skin's LongNotScript is passed");
+
         // exctract the data necessary for score calculation
         var scoreScriptField = Traverse.Create(parentScript).Field("scoreScript");
 
@@ -28,11 +35,12 @@ internal static class ScoreUpdater
 
         var totalCombo = BMSLib.JudgeGrade.TotalCombo;
         var maxCombo = Traverse.Create(parentScript).Field("comboScript").Method("ScoreGetMaxCombo").GetValue<int>();
+
         // the score is always recalculated from scratch, this class is no exception
         var num = (Math.Min(baseAccuracy / accuracyCount, 1f)
                 + Math.Min(exAccuracy / accuracyCount, 0.15f)
                 + Math.Min(maxCombo / (float)totalCombo / 10f, 0.1f))
-            * 100000000f;
+            * multiplier;
 
         // use the original score script to update the UI
         scoreScriptField.Field("scoreNum").SetValue(num);
