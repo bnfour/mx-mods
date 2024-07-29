@@ -21,5 +21,10 @@ public class SkinTweaksMod : MelonMod
             "Mountain removal", "Removes moving white mountain overlays from Ink2D.");
         _longNotesEndScoringEnabled = _prefsCategory.CreateEntry("LongNoteEndScoring", true,
             "Update score display for long notes", "Updates the score display on Techno2D and STG2D when long notes end.");
+
+        if (!MountainRemovalEnabled && !LongNotesEndScoring)
+        {
+            LoggerInstance.Warning("No features of the mod enabled, it can be unistalled.");
+        }
     }
 }
