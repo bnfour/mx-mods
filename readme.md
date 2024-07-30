@@ -101,15 +101,15 @@ This disables the moving mountain overlay images on Ink2D for cleaner looks. I a
 #### Improved long note scoring for Techno2D (and probably STG2D)
 This updates the score display present on Techno2D and STG2D whenever the long note is played at least partially. On some charts, long notes at the very end make skin's display score inconsistent with final results:
 
-todo before video
+https://github.com/user-attachments/assets/445e69c4-f2a8-4841-8e70-336dbd5948b1
 
 (Results screen modified by [Plentiful stats](#plentiful-stats))
 
 Compare with the score being updated on long note releases:
 
-todo after video
+https://github.com/user-attachments/assets/c5b4fe86-c2d2-45e8-a7a6-27cb0e60ebd4
 
->![WARNING]
+> [!WARNING]
 > STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
 
 ### Configuration
