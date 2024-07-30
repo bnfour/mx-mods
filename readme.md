@@ -11,6 +11,7 @@ There are currently four mods available in this repo: three are interface enhanc
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
 - [Plentiful stats](#plentiful-stats) — provides some data for the stats screen
+- [Skin tweaks](#skin-tweaks) — improvemets for some of the skins
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
@@ -31,7 +32,7 @@ Mod file: `HiddenCursor.dll`
 
 This mod hides the cursor during gameplay, preventing stuff like this:
 
-![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/annoying-cursor.png)
+![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/HiddenCursor/annoying-cursor.png)
 
 The cursor is still shown when the game is paused, and in all other screens.
 
@@ -47,7 +48,7 @@ The statistics display is changed:
 
 | Before | After |
 | --- | --- |
-| ![i tend to get one great in any rhythm game i play](readme-images/vanilla-stats.png) | ![almost 122 and still one great smh my head](readme-images/cool-stats.png) |
+| ![i tend to get one great in any rhythm game i play](readme-images/PlentifulStats/vanilla-stats.png) | ![almost 122 and still one great smh my head](readme-images/PlentifulStats/cool-stats.png) |
 
 
 1. Blue exacts are counted separately from cyan exacts  
@@ -63,7 +64,7 @@ This feature (more of an unofficial bugfix, actually 🤓) changes the "NEXT" bu
 
 | Lower score reference | Before | After |
 | --- | --- | --- |
-| ![image trivia: this is a relatively old screenshot i took when i just started playing](readme-images/en_next-reference.png) | ![this is a slightly older screenshot](readme-images/en_next-unfixed.png) | ![and this is a recent one, obviously](readme-images/en_next-fixed.png) |
+| ![image trivia: this is a relatively old screenshot i took when i just started playing](readme-images/PlentifulStats/en_next-reference.png) | ![this is a slightly older screenshot](readme-images/PlentifulStats/en_next-unfixed.png) | ![and this is a recent one, obviously](readme-images/PlentifulStats/en_next-fixed.png) |
 
 I'd love to see an official fix for this implemented. ٩(◕‿◕)۶
 
@@ -79,6 +80,46 @@ SeparateExacts = true
 PrevBest = true
 # Fixes Next button switching to Chinese on 120+ scores.
 EnNextFix = true
+```
+
+Set to `false` to disable a feature.
+
+## Skin tweaks
+Mod file: `SkinTweaks.dll`
+
+This is a collection of improvements to in-game skins. All features can be turned on and off separately.
+
+### Available features
+
+#### Disabled mountain overlay for Ink2D
+This disables the moving mountain overlay images on Ink2D for cleaner looks. I also find their sudden disappearance quite jarring (but you don't have to agree with me).
+
+| Before | After |
+| --- | --- |
+| ![i tried to take similar screenshots, but it's not perfect](readme-images/SkinTweaks/UI0D_before.jpg) | ![once again, sorry for potato quality](readme-images/SkinTweaks/UI0D_after.jpg) |
+
+#### Improved long note scoring for Techno2D (and probably STG2D)
+This updates the score display present on Techno2D and STG2D whenever the long note is played at least partially. On some charts, long notes at the very end make skin's display score inconsistent with final results:
+
+https://github.com/user-attachments/assets/445e69c4-f2a8-4841-8e70-336dbd5948b1
+
+(Results screen modified by [Plentiful stats](#plentiful-stats))
+
+Compare with the score being updated on long note releases:
+
+https://github.com/user-attachments/assets/c5b4fe86-c2d2-45e8-a7a6-27cb0e60ebd4
+
+> [!WARNING]
+> STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
+
+### Configuration
+All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+```toml
+[Bnfour_SkinTweaks]
+# Removes moving white mountain overlays from Ink2D.
+MountainRemoval = true
+# Updates the score display on Techno2D and STG2D when long notes end.
+LongNoteEndScoring = true
 ```
 
 Set to `false` to disable a feature.
@@ -110,7 +151,7 @@ where `path/to/steam` is actual path to your Steam library. Please make sure to 
 
 If the preset was patched successfully, its name in setup will change:
 
-![yay](readme-images/patched-preset.png)
+![yay](readme-images/VSyncAnnihilator/patched-preset.png)
 
 Select it to start the game without vSync. The actual mod, if installed, will keep it disabled. (Without the mod, the game may eventually turn it on again, and/or force the 60/120 FPS cap found in its settings.)
 
@@ -129,7 +170,7 @@ The value of `TargetFramerate`, if non-zero, is passed to the engine as [`Applic
 If the config value is zero, the game runs as fast as it can. I wouldn't recommend this, as with really high FPS (I got 1500+) things seem to be messed up. Also note that, for technical reasons, the resulting FPS may differ from the cap (for me, 600 FPS cap results in about 640 FPS in game, and 240 FPS cap is 246 actual FPS).
 
 ## Experimental mod
-This is not a mod intended for using. Rather, it's a developmental test bed for me to test random stuff without changing existing proper mods. All current mods (except Plentiful stats) were prototyped as a single do-it-all unimaginable horror abomination here first and then rewritten to be modular cute things currently available in this repo.
+This is not a mod intended for using. Rather, it's a developmental test bed for me to test random stuff without changing existing proper mods. A few first mods were prototyped as a single do-it-all unimaginable horror abomination here first and then rewritten to be modular cute things currently available in this repo; newer ones also were prototyped here.
 
 The project contains the bare minimum for a mod that is successfully loaded; it does nothing except posting a single message in the log.
 
