@@ -6,7 +6,7 @@ Unofficial quality of life modifications for the PC version of the hit video gam
 - Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
-There are currently four mods available in this repo: three are interface enhancements, and another one can be used to disable vSync and other FPS caps that are otherwise baked into the game.
+There are currently five mods available in this repo: four are interface enhancements, and another one can be used to disable vSync and other FPS caps that are otherwise baked into the game.
 
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
