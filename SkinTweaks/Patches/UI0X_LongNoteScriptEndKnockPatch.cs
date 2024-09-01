@@ -25,7 +25,7 @@ public class UI0X_LongNoteScriptEndKnockPatch
 
     private static void Prefix(MonoBehaviour __instance, out bool __state)
     {
-        if (Melon<SkinTweaksMod>.Instance.LongNotesEndScoring)
+        if (Melon<SkinTweaksMod>.Instance.LongNotesCustomScoring)
         {
             __state = Traverse.Create(__instance).Field<bool>("endKnock").Value;
         }
@@ -45,6 +45,7 @@ public class UI0X_LongNoteScriptEndKnockPatch
         if (!__state && ___knocking)
         {
             ScoreUpdater.Update(__instance);
+            Melon<SkinTweaksMod>.Instance.KnockingCounter?.EndKnock();
         }
     }
 }

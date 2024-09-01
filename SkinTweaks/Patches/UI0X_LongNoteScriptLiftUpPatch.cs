@@ -24,7 +24,7 @@ public class UI0X_LongNoteScriptLiftUpPatch
 
     private static void Postfix(MonoBehaviour __instance)
     {
-        if (Melon<SkinTweaksMod>.Instance.LongNotesEndScoring)
+        if (Melon<SkinTweaksMod>.Instance.LongNotesCustomScoring)
         {
             ScoreUpdater.Update(__instance);
         }
