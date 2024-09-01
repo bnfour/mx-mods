@@ -30,12 +30,13 @@ public class SkinTweaksMod : MelonMod
             LoggerInstance.Warning("No features of the mod enabled, it can be unistalled.");
         }
         // TODO make it nullable, null = advanced scoring off via new prefs entry
-        KnockingCounter = new(LoggerInstance);
+        KnockingCounter = new();
     }
 
     public override void OnSceneWasLoaded(int buildIndex, string sceneName)
     {
         base.OnSceneWasLoaded(buildIndex, sceneName);
-        KnockingCounter.Reset();
+        
+        KnockingCounter?.Reset();
     }
 }

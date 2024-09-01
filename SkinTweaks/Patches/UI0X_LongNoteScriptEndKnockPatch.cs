@@ -45,7 +45,7 @@ public class UI0X_LongNoteScriptEndKnockPatch
         if (!__state && ___knocking)
         {
             ScoreUpdater.Update(__instance);
-            Melon<SkinTweaksMod>.Instance.KnockingCounter.Count -= 1;
+            Melon<SkinTweaksMod>.Instance.KnockingCounter?.EndKnock();
         }
     }
 }

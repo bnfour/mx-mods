@@ -5,22 +5,16 @@ namespace Bnfour.MusynxMods.SkinTweaks.Utilities;
 public class KnockingCounter
 {
     private int _count;
-    // TODO remove, reference as usual to report broken values
-    private readonly MelonLogger.Instance _logger;
 
-    public KnockingCounter(MelonLogger.Instance logger)
+    // TODO is a locker on there necessary?
+    public void StartKnock()
     {
-        _logger = logger;
+        _count++;
     }
 
-    public int Count
+    public void EndKnock()
     {
-        get => _count;
-        set
-        {
-            _count = value;
-            _logger.Msg($"knocking count: {_count}{((_count < 0 || _count > 4) ? " AAAAA" : "")}");
-        }
+        _count--;
     }
 
     public void Reset() => _count = 0;
