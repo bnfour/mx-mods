@@ -23,7 +23,9 @@ public class UI0X_ComboScriptComboComboPatch
         // if a single note on a different track is tapped while holding a long note
         // (nothing breaking, i guess)
         var mod = Melon<SkinTweaksMod>.Instance;
-        if (mod.LongNotesEndScoring && mod.KnockingCounter.AnyLongNotes)
+        if (mod.LongNotesCustomScoring && mod.LongNotesAdvancedCustomScoring
+            // LongNotesAdvancedCustomScoring implies KnockingCounter being non-null
+            && mod.KnockingCounter.AnyLongNotes)
         {
             var type = __instance is UI0A_ComboScript ? typeof(UI0A_LongNoteScript)
                 : __instance is UIE_ComboScript ? typeof(UI0E_LongNoteScript)
@@ -32,7 +34,6 @@ public class UI0X_ComboScriptComboComboPatch
             // TODO docs say this is a resource-hungry opeation, cache somehow?
             var obj = UnityEngine.Object.FindObjectOfType(type) as MonoBehaviour;
 
-            mod.LoggerInstance.Msg($"null {obj == null}");
             ScoreUpdater.Update(obj);
         }
     }
