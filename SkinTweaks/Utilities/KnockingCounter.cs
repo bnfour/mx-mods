@@ -24,4 +24,6 @@ public class KnockingCounter
     }
 
     public void Reset() => _count = 0;
+
+    public bool AnyLongNotes => _count > 0;
 }
