@@ -27,14 +27,16 @@ public class UI0X_ComboScriptComboComboPatch
             // LongNotesAdvancedCustomScoring implies KnockingCounter being non-null
             && mod.KnockingCounter.AnyLongNotes)
         {
-            var type = __instance is UI0A_ComboScript ? typeof(UI0A_LongNoteScript)
-                : __instance is UIE_ComboScript ? typeof(UI0E_LongNoteScript)
-                : throw new ApplicationException("Unsupported skin's ComboScript is passed");
+            var longNoteScript = mod.LastKnownLongNoteScript;
+            if (longNoteScript == null)
+            {
+                var type = __instance is UI0A_ComboScript ? typeof(UI0A_LongNoteScript)
+                    : __instance is UIE_ComboScript ? typeof(UI0E_LongNoteScript)
+                    : throw new ApplicationException("Unsupported skin's ComboScript is passed");
 
-            // TODO docs say this is a resource-hungry opeation, cache somehow?
-            var obj = UnityEngine.Object.FindObjectOfType(type) as MonoBehaviour;
-
-            ScoreUpdater.Update(obj);
+                longNoteScript = UnityEngine.Object.FindObjectOfType(type) as MonoBehaviour;
+            }
+            ScoreUpdater.Update(longNoteScript);
         }
     }
 }

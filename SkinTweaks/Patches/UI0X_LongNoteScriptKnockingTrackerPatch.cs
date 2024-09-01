@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using HarmonyLib;
 using MelonLoader;
+using UnityEngine;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 
@@ -17,18 +18,21 @@ public class UI0X_LongNoteScriptKnockingTrackerPatch
         yield return AccessTools.Method(typeof(UI0E_LongNoteScript), nameof(UI0E_LongNoteScript.Knock));
     }
 
-    private static void Postfix(MethodBase __originalMethod, bool ___knocking)
+    private static void Postfix(MonoBehaviour __instance, MethodBase __originalMethod, bool ___knocking)
     {
-        var counter = Melon<SkinTweaksMod>.Instance.KnockingCounter;
-        if (counter == null)
+        var mod = Melon<SkinTweaksMod>.Instance;
+        if (!(mod.LongNotesCustomScoring && mod.LongNotesAdvancedCustomScoring))
         {
             return;
         }
+
+        var counter = mod.KnockingCounter;
         // knock is called many times, we only care when it leaves knocking flag set
         if (__originalMethod.Name == nameof(UI0A_LongNoteScript.Knock))
         {
             if (___knocking)
             {
+                mod.LastKnownLongNoteScript = __instance;
                 counter?.StartKnock();
             }
         }

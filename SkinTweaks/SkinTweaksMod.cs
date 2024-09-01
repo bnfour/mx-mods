@@ -1,5 +1,6 @@
 using Bnfour.MusynxMods.SkinTweaks.Utilities;
 using MelonLoader;
+using UnityEngine;
 
 namespace Bnfour.MusynxMods.SkinTweaks;
 
@@ -11,6 +12,9 @@ public class SkinTweaksMod : MelonMod
     private MelonPreferences_Entry<bool> _longNotesAdvancedCustomScoringEnabled;
 
     public KnockingCounter KnockingCounter;
+
+    // used to avoid allegedly costly search through the component hierarchy
+    public MonoBehaviour LastKnownLongNoteScript { get; set; }
 
     internal bool MountainRemovalEnabled => _mountainRemovalEnabled.Value;
     internal bool LongNotesCustomScoring => _longNotesCustomScoringEnabled.Value;
@@ -45,5 +49,6 @@ public class SkinTweaksMod : MelonMod
         base.OnSceneWasLoaded(buildIndex, sceneName);
         
         KnockingCounter?.Reset();
+        LastKnownLongNoteScript = null;
     }
 }
