@@ -105,24 +105,32 @@ https://github.com/user-attachments/assets/445e69c4-f2a8-4841-8e70-336dbd5948b1
 
 (Results screen modified by [Plentiful stats](#plentiful-stats))
 
-Compare with the score being updated on long note releases:
+Compare with the score being updated on long note releases (legacy/simple scoring):
 
 https://github.com/user-attachments/assets/c5b4fe86-c2d2-45e8-a7a6-27cb0e60ebd4
+
+Or with the score being updated on every combo tick:
+
+TODO video
 
 > [!WARNING]
 > STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
 
 ### Configuration
-All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+Both features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
 [Bnfour_SkinTweaks]
 # Removes moving white mountain overlays from Ink2D.
 MountainRemoval = true
-# Updates the score display on Techno2D and STG2D when long notes end.
-LongNoteEndScoring = true
+# Updates the score display on Techno2D and STG2D for long notes.
+LongNoteScoring = true
+# Updates the score display on Techno2D and STG2D for long notes every combo tick. If disabled, the score is updated on long note release.
+AdvLongNoteScoring = true
 ```
 
-Set to `false` to disable a feature.
+Set to `false` to disable a feature. `AdvLongNoteScoring` controls scoring behavior (if it is enabled by `LongNoteScoring`):
+- `true` to update on every combo tick (advanced scoring, see the third video demo)
+- `false` to update on long note releases (legacy scoring, see the second video demo)
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
