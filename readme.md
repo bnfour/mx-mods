@@ -111,7 +111,7 @@ https://github.com/user-attachments/assets/c5b4fe86-c2d2-45e8-a7a6-27cb0e60ebd4
 
 Or with the score being updated on every combo tick:
 
-TODO video
+https://github.com/user-attachments/assets/ec62569f-dde0-4d96-93f6-3837f2179225
 
 > [!WARNING]
 > STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
