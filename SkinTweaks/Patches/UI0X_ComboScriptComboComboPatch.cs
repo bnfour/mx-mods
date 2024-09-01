@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Bnfour.MusynxMods.SkinTweaks.Utilities;
 using HarmonyLib;
 using MelonLoader;
 using UnityEngine;
+
+using Bnfour.MusynxMods.SkinTweaks.Utilities;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 
@@ -14,14 +15,13 @@ public class UI0X_ComboScriptComboComboPatch
     private static IEnumerable<MethodBase> TargetMethods()
     {
         yield return AccessTools.Method(typeof(UI0A_ComboScript), "ComboCombo");
+        // the zero from UI0E is missing for some reason,
+        // actual scrips use this as well, so it _should_ be working
         yield return AccessTools.Method(typeof(UIE_ComboScript), "ComboCombo");
     }
 
     private static void Postfix(MonoBehaviour __instance)
     {
-        // TODO this probably will interfere with a vanilla update
-        // if a single note on a different track is tapped while holding a long note
-        // (nothing breaking, i guess)
         var mod = Melon<SkinTweaksMod>.Instance;
         if (mod.LongNotesCustomScoring && mod.LongNotesAdvancedCustomScoring
             // LongNotesAdvancedCustomScoring implies KnockingCounter being non-null

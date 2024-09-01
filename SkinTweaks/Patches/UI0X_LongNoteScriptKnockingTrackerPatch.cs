@@ -6,6 +6,10 @@ using UnityEngine;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 
+/// <summary>
+/// Called when knocking flag of a LongNoteScript is meaningfully updated
+/// to update the relevant counter.
+/// </summary>
 [HarmonyPatch]
 public class UI0X_LongNoteScriptKnockingTrackerPatch
 {
