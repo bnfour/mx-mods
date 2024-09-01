@@ -1,3 +1,4 @@
+using Bnfour.MusynxMods.SkinTweaks.Utilities;
 using MelonLoader;
 
 namespace Bnfour.MusynxMods.SkinTweaks;
@@ -7,6 +8,8 @@ public class SkinTweaksMod : MelonMod
     private MelonPreferences_Category _prefsCategory;
     private MelonPreferences_Entry<bool> _mountainRemovalEnabled;
     private MelonPreferences_Entry<bool> _longNotesEndScoringEnabled;
+
+    public KnockingCounter KnockingCounter;
 
     internal bool MountainRemovalEnabled => _mountainRemovalEnabled.Value;
     internal bool LongNotesEndScoring => _longNotesEndScoringEnabled.Value;
@@ -26,5 +29,13 @@ public class SkinTweaksMod : MelonMod
         {
             LoggerInstance.Warning("No features of the mod enabled, it can be unistalled.");
         }
+        // TODO make it nullable, null = advanced scoring off via new prefs entry
+        KnockingCounter = new(LoggerInstance);
+    }
+
+    public override void OnSceneWasLoaded(int buildIndex, string sceneName)
+    {
+        base.OnSceneWasLoaded(buildIndex, sceneName);
+        KnockingCounter.Reset();
     }
 }
