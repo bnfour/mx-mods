@@ -22,9 +22,12 @@ internal static class ScoreUpdater
     {
         // different skins have different lengths of display score,
         // 9 for UI0A (Techno2D), 6 for UI0E (STG2D)
-        var multiplier = parentScript is UI0A_LongNoteScript ? 100000000f
-            : parentScript is UI0E_LongNoteScript ? 100000f
-            : throw new ApplicationException("Unsupported skin's LongNoteScript is passed");
+        var multiplier = parentScript switch
+        {
+            UI0A_LongNoteScript => 100_000_000f,
+            UI0E_LongNoteScript => 100_000f,
+            _ => throw new ApplicationException("Unsupported skin's LongNoteScript is passed")
+        };
 
         // exctract the data necessary for score calculation
         var scoreScriptField = Traverse.Create(parentScript).Field("scoreScript");
