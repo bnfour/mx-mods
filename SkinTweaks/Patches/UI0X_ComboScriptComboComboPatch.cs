@@ -16,7 +16,7 @@ public class UI0X_ComboScriptComboComboPatch
     {
         yield return AccessTools.Method(typeof(UI0A_ComboScript), "ComboCombo");
         // the zero from UI0E is missing for some reason,
-        // actual scrips use this as well, so it _should_ be working
+        // actual scripts use this as well, so it _should_ be working
         yield return AccessTools.Method(typeof(UIE_ComboScript), "ComboCombo");
     }
 
@@ -30,10 +30,12 @@ public class UI0X_ComboScriptComboComboPatch
             var longNoteScript = mod.LastKnownLongNoteScript;
             if (longNoteScript == null)
             {
-                var type = __instance is UI0A_ComboScript ? typeof(UI0A_LongNoteScript)
-                    : __instance is UIE_ComboScript ? typeof(UI0E_LongNoteScript)
-                    : throw new ApplicationException("Unsupported skin's ComboScript is passed");
-
+                var type = __instance switch
+                {
+                    UI0A_ComboScript => typeof(UI0A_LongNoteScript),
+                    UIE_ComboScript => typeof(UI0E_LongNoteScript),
+                    _ => throw new ApplicationException("Unsupported skin's ComboScript is passed"),
+                };
                 longNoteScript = UnityEngine.Object.FindObjectOfType(type) as MonoBehaviour;
             }
             ScoreUpdater.Update(longNoteScript);
