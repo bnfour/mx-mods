@@ -11,7 +11,7 @@ There are currently five mods available in this repo: four are interface enhance
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
 - [Plentiful stats](#plentiful-stats) — provides some data for the stats screen
-- [Skin tweaks](#skin-tweaks) — improvemets for some of the skins
+- [Skin tweaks](#skin-tweaks) — improvements for some of the skins
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
@@ -98,7 +98,7 @@ This disables the moving mountain overlay images on Ink2D for cleaner looks. I a
 | --- | --- |
 | ![i tried to take similar screenshots, but it's not perfect](readme-images/SkinTweaks/UI0D_before.jpg) | ![once again, sorry for potato quality](readme-images/SkinTweaks/UI0D_after.jpg) |
 
-#### Improved long note scoring for Techno2D (and probably STG2D)
+#### Improved long note scoring for Techno2D and STG2D
 This updates the score display present on Techno2D and STG2D whenever the long note is played at least partially. On some charts, long notes at the very end make skin's display score inconsistent with final results:
 
 https://github.com/user-attachments/assets/445e69c4-f2a8-4841-8e70-336dbd5948b1
@@ -112,9 +112,6 @@ https://github.com/user-attachments/assets/c5b4fe86-c2d2-45e8-a7a6-27cb0e60ebd4
 Or with the score being updated on every combo tick:
 
 https://github.com/user-attachments/assets/ec62569f-dde0-4d96-93f6-3837f2179225
-
-> [!WARNING]
-> STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
 
 ### Configuration
 Both features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
