@@ -22,8 +22,6 @@ public class SongInfoCoreUpdateSyncPatch
     {
         foreach (var instruction in instructions)
         {
-            var enabled = Melon<PlentifulStatsMod>.Instance.PrevBest;
-            
             // keep all the original instructions
             yield return instruction;
             // if the last instruction was "call the getter of SongSaveInfo's SyncNumber",
@@ -31,7 +29,7 @@ public class SongInfoCoreUpdateSyncPatch
             // let's call our own helper that grabs it from here, stores it,
             // and returns the same value to the top of the stack as if nothing happened
             // to not break the rest of the original method
-            if (enabled && instruction.opcode == OpCodes.Callvirt)
+            if (instruction.opcode == OpCodes.Callvirt)
             {
                 var methodInfo = instruction.operand as MethodInfo;
                 if (methodInfo.DeclaringType.Name == nameof(SongSaveInfo)
