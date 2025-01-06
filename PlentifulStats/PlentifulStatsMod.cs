@@ -21,12 +21,6 @@ public class PlentifulStatsMod : MelonMod
     /// </summary>
     internal int SyncNumber { get; set; }
 
-    /// <summary>
-    /// Stores the id of the song to look up the previous record for.
-    /// Here to share between diffrent patches.
-    /// </summary>
-    internal int? SongId { get; set; } = null;
-
     public override void OnInitializeMelon()
     {
         base.OnInitializeMelon();
