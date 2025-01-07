@@ -11,7 +11,7 @@ There are currently five mods available in this repo: four are interface enhance
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
 - [Plentiful stats](#plentiful-stats) — provides some data for the stats screen
-- [Skin tweaks](#skin-tweaks) — improvemets for some of the skins
+- [Skin tweaks](#skin-tweaks) — improvements for some of the skins
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
