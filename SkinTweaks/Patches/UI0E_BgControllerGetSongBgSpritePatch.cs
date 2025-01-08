@@ -1,76 +1,46 @@
 using HarmonyLib;
-using MelonLoader;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 
+/// <summary>
+/// A patch that sets up rendering for background art under the space game overlay.
+/// </summary>
 [HarmonyPatch(typeof(UI0E_BgController), nameof(UI0E_BgController.GetSongBgSprite))]
 public class UI0E_BgControllerGetSongBgSpritePatch
 {
+    // the main camera skips layers 11 through 16, 16 is taken by bgCamera
+    private const int BgLayer = 13;
+
     private static void Prefix(UI0E_BgController __instance)
     {
-        // Melon<SkinTweaksMod>.Logger.Msg("GetSongBgSprite called");
+        // TODO return early if feature not enabled
+
+        // set up the bg sprite to display
         __instance.bg.gameObject.SetActive(true);
-        __instance.bg.gameObject.layer = 13;
+        __instance.bg.gameObject.layer = BgLayer;
+        // TODO configurable alpha
         __instance.bg.color = new Color(1f, 1f, 1f, 0.33f);
 
-        // Melon<SkinTweaksMod>.Logger.Msg($"bg layer {__instance.bg.gameObject.layer}");
-        // Melon<SkinTweaksMod>.Logger.Msg($"plane layer {__instance.fightPlane.layer}");
-
-        // foreach (var cam in Camera.allCameras)
-        // {
-        //     var sr = cam.GetComponentsInChildren<SpriteRenderer>();
-        //     Melon<SkinTweaksMod>.Logger.Msg($"cam {cam.name}");
-        //     Melon<SkinTweaksMod>.Logger.Msg($"\tortho {cam.orthographic}");
-        //     Melon<SkinTweaksMod>.Logger.Msg($"\tculling mask {cam.cullingMask}");
-        //     Melon<SkinTweaksMod>.Logger.Msg($"\tclear flags {cam.clearFlags.ToString()}");
-        //     Melon<SkinTweaksMod>.Logger.Msg($"\tbg color {cam.backgroundColor.ToString()}");
-        // }
-
+        // clone the bgCamera object
         var customCameraHolder = GameObject.Instantiate(__instance.bgCamera, __instance.bgCamera.transform.parent);
-        customCameraHolder.name = "bnTertiaryCamHolder";
-        Melon<SkinTweaksMod>.Logger.Msg($"enabled {customCameraHolder.activeSelf}");
-
+        customCameraHolder.name = "bnThirdCamHolder";
+        // take most of the settings from the main camera
         var backgroundBackgroundCamera = customCameraHolder.GetComponent<Camera>();
         backgroundBackgroundCamera.CopyFrom(Camera.main);
-
         backgroundBackgroundCamera.name = "Background background camera (things are complicated)";
         backgroundBackgroundCamera.tag = "bnThirdCamForBg";
+        // put below the other cameras, and set to render only the bg layer
         backgroundBackgroundCamera.depth = -2;
-        backgroundBackgroundCamera.cullingMask = 1 << 13;
+        backgroundBackgroundCamera.cullingMask = 1 << BgLayer;
         backgroundBackgroundCamera.clearFlags = CameraClearFlags.SolidColor;
-        backgroundBackgroundCamera.backgroundColor = Color.black;//new Color(0.792f, 0.314f, 0.063f, 1f);
+        // TODO consider making the color configurable by user
+        backgroundBackgroundCamera.backgroundColor = Color.black;
         backgroundBackgroundCamera.enabled = true;
 
-        var cameraz = backgroundBackgroundCamera.transform.position.z;
-        var spritez = __instance.bg.transform.position.z;
-
-        Melon<SkinTweaksMod>.Logger.Msg($"cam {cameraz}, spr {spritez}");
-
+        // set up the existing second camera for transparency to show output from the third one
         var spaceshipsCamera = __instance.bgCamera.GetComponent<Camera>();
         spaceshipsCamera.clearFlags = CameraClearFlags.Depth;
         spaceshipsCamera.backgroundColor = Color.clear;
-
-        // Melon<SkinTweaksMod>.Logger.Msg($"order {__instance.fightPlaneController.leftPlayer.planeSprite.sortingOrder}, layer id {__instance.fightPlaneController.leftPlayer.planeSprite.sortingLayerID}, name {__instance.fightPlaneController.leftPlayer.planeSprite.sortingLayerName}");
-        
-    }
-
-    private static void Postfix(UI0E_BgController __instance)
-    {
-        Melon<SkinTweaksMod>.Logger.Msg("GetSongBgSprite finished");
-        foreach (var cam in Camera.allCameras)
-        {
-            var sr = cam.GetComponentsInChildren<SpriteRenderer>();
-            Melon<SkinTweaksMod>.Logger.Msg($"cam {cam.name}");
-            Melon<SkinTweaksMod>.Logger.Msg($"\tortho {cam.orthographic}");
-            Melon<SkinTweaksMod>.Logger.Msg($"\tculling mask {cam.cullingMask}");
-            Melon<SkinTweaksMod>.Logger.Msg($"\tclear flags {cam.clearFlags.ToString()}");
-            Melon<SkinTweaksMod>.Logger.Msg($"\tbg color {cam.backgroundColor.ToString()}");
-            Melon<SkinTweaksMod>.Logger.Msg($"\tdepth {cam.depth}");
-        }
-        // Melon<SkinTweaksMod>.Logger.Msg($"order {__instance.bg.sortingOrder}, layer id {__instance.bg.sortingLayerID}, name {__instance.bg.sortingLayerName}");
-        // Melon<SkinTweaksMod>.Logger.Msg($"sprite {__instance.bg.sprite.name}");
-        // Melon<SkinTweaksMod>.Logger.Msg($"tex {__instance.bg.sprite.texture.name}");
     }
 }
