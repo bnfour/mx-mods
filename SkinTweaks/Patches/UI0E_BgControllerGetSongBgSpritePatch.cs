@@ -1,4 +1,5 @@
 using HarmonyLib;
+using MelonLoader;
 using UnityEngine;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
@@ -14,7 +15,10 @@ public class UI0E_BgControllerGetSongBgSpritePatch
 
     private static void Prefix(UI0E_BgController __instance)
     {
-        // TODO return early if feature not enabled
+        if (!Melon<SkinTweaksMod>.Instance.StgBackgroundArtEnabled)
+        {
+            return;
+        }
 
         // set up the bg sprite to display
         __instance.bg.gameObject.SetActive(true);
