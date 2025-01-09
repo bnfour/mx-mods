@@ -116,8 +116,14 @@ https://github.com/user-attachments/assets/ec62569f-dde0-4d96-93f6-3837f2179225
 > [!WARNING]
 > STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
 
+#### Background image for STG2D
+This adds background for STG2D. The opacity of background is configurable using 0–100 percentage:
+| 0% or not enabled | 33% — default | 100% — fully opaque |
+| --- | --- | --- |
+| ![you can't really tell here, but it is the same image, completely transparent](readme-images/SkinTweaks/UI0E_bg_0.jpg) | ![it was suprisingly difficult to get this working](readme-images/SkinTweaks/UI0E_bg_33.jpg) | ![why](readme-images/SkinTweaks/UI0E_bg_100.jpg) |
+
 ### Configuration
-Both features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
 [Bnfour_SkinTweaks]
 # Removes moving white mountain overlays from Ink2D.
@@ -126,11 +132,17 @@ MountainRemoval = true
 LongNoteScoring = true
 # Updates the score display on Techno2D and STG2D for long notes every combo tick. If disabled, the score is updated on long note release.
 AdvLongNoteScoring = true
+# Enables display of background art for STG2D.
+STGBackground = true
+# Opacity for the background image, percent. 0 is fully transparent, 100 is fully opaque.
+STGBackgroundOpacity = 33
 ```
 
 Set to `false` to disable a feature. `AdvLongNoteScoring` controls scoring behavior (if it is enabled by `LongNoteScoring`):
 - `true` to update on every combo tick (advanced scoring, see the third video demo)
 - `false` to update on long note releases (legacy scoring, see the second video demo)
+
+`STGBackgroundOpacity` controls the opacity of the background art. Has no effect if `STGBackground` is disabled.
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
