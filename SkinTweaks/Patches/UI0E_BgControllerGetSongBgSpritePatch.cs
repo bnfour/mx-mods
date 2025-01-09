@@ -15,7 +15,8 @@ public class UI0E_BgControllerGetSongBgSpritePatch
 
     private static void Prefix(UI0E_BgController __instance)
     {
-        if (!Melon<SkinTweaksMod>.Instance.StgBackgroundArtEnabled)
+        var modInstance = Melon<SkinTweaksMod>.Instance;
+        if (!modInstance.StgBackgroundArtEnabled)
         {
             return;
         }
@@ -23,8 +24,9 @@ public class UI0E_BgControllerGetSongBgSpritePatch
         // set up the bg sprite to display
         __instance.bg.gameObject.SetActive(true);
         __instance.bg.gameObject.layer = BgLayer;
-        // TODO configurable alpha
-        __instance.bg.color = new Color(1f, 1f, 1f, 0.33f);
+
+        var alpha = (float)modInstance.StgBackgroundOpacity / 100;
+        __instance.bg.color = new Color(1f, 1f, 1f, alpha);
 
         // clone the bgCamera object
         var customCameraHolder = GameObject.Instantiate(__instance.bgCamera, __instance.bgCamera.transform.parent);
