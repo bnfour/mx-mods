@@ -33,9 +33,9 @@ patched_caption =  b"(NO V-Sync) Extreme Quality"
 int32_zero = b"\x00\x00\x00\x00"
 int32_one = b"\x01\x00\x00\x00"
 
-# this is offset from the start of the caption text to the start of 4 bit int32
+# this is offset from the start of the caption text to the start of 4 byte int32
 # which contains vSyncCount value
-# most of the stuff in between are 4 bit int32s or floats,
+# most of the stuff in between are 4 byte int32s or floats,
 # but there's 4 single bytes (or bools?) directly before the vSyncCount
 # other thing to note is that the caption includes \0 at the end
 vsynccount_offset = 96
