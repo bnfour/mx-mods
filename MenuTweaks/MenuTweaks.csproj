@@ -18,6 +18,7 @@
     <Reference Include="../references/UnityEngine.dll" />
     <Reference Include="../references/UnityEngine.CoreModule.dll" />
     <Reference Include="../references/0Harmony.dll" />
+    <Reference Include="../references/UnityEngine.UI.dll" />
   </ItemGroup>
 
 </Project>
