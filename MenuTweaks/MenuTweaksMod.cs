@@ -6,6 +6,8 @@ public class MenuTweaksMod : MelonMod
 {
     private MelonPreferences_Category _prefsCategory;
 
+    internal bool MenuMuteEnabled => true;
+
     public override void OnInitializeMelon()
     {
         base.OnInitializeMelon();
