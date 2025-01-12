@@ -6,12 +6,13 @@ Unofficial quality of life modifications for the PC version of the hit video gam
 - Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
-There are currently five mods available in this repo: four are interface enhancements, and another one can be used to disable vSync and other FPS caps that are otherwise baked into the game.
+There are currently the following mods available in this repo:
 
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
 - [Plentiful stats](#plentiful-stats) — provides some data for the stats screen
 - [Skin tweaks](#skin-tweaks) — improvements for some of the skins
+- [Menu tweaks](#menu-tweaks) — improvements for song selection menus
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
@@ -140,6 +141,26 @@ Set to `false` to disable a feature. `AdvLongNoteScoring` controls scoring behav
 - `false` to update on long note releases (legacy scoring, see the second video demo)
 
 `STGBackgroundOpacity` controls the opacity of the background art. Has no effect if `STGBackground` is disabled.
+
+## Menu tweaks
+Mod file: `MenuTweaks.dll`
+
+This is a collection of changes for the song selection menus. All features can be toggled on and off independently.
+
+### Available features
+
+#### Fix for ordinal numbers
+This fixes suffixes for player rank sometimes not matching the number itself:
+| Menu | Before | After |
+| --- | --- | --- |
+| Main | 111st | 111th |
+| List | 33th | 33rd |
+
+#### Mute
+This mutes the various beep/clang/whatever-you-hear sounds in the menu, leaving only the music preview. That's it.
+
+### Configuration
+TODO paste the cfg
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
