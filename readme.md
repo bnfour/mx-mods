@@ -153,14 +153,19 @@ This is a collection of changes for the song selection menus. All features can b
 This fixes suffixes for player rank sometimes not matching the number itself:
 | Menu | Before | After |
 | --- | --- | --- |
-| Main | 111st | 111th |
-| List | 33th | 33rd |
+| Main | ![i actually noticed this on a 11th rank](readme-images/MenuTweaks/ordinal-main-original.png) | ![but i have been pushed lower on the leaderboard since](readme-images/MenuTweaks/ordinal-main-fixed.png) |
+| List | ![i'm not _that_ good at this game](readme-images/MenuTweaks/ordinal-list-original.png) | ![7* are still my ceiling](readme-images/MenuTweaks/ordinal-list-fixed.png) |
 
 #### Mute
 This mutes the various beep/clang/whatever-you-hear sounds in the menu, leaving only the music preview. That's it.
 
 ### Configuration
+All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+```toml
 TODO paste the cfg
+```
+
+Set to `false` to disable a feature.
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
