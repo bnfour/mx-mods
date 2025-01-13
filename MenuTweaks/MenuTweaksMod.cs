@@ -20,5 +20,10 @@ public class MenuTweaksMod : MelonMod
             "Ordinals fix", "Fixes suffixes for your rank in song selection menus.");
         _muteEnabled = _prefsCategory.CreateEntry("Mute", true,
             "Menu mute", "Mutes menu sounds, leaving only song preview.");
+
+        if (!OrdinalFixEnabled && !MenuMuteEnabled)
+        {
+            LoggerInstance.Warning("No features of the mod enabled, it can be unistalled.");
+        }
     }
 }
