@@ -162,7 +162,11 @@ This mutes the various beep/clang/whatever-you-hear sounds in the menu, leaving 
 ### Configuration
 All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
-TODO paste the cfg
+[Bnfour_MenuTweaks]
+# Fixes suffixes for your rank in song selection menus.
+OrdinalsFix = true
+# Mutes menu sounds, leaving only song preview.
+Mute = true
 ```
 
 Set to `false` to disable a feature.
