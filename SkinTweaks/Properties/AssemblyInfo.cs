@@ -9,4 +9,4 @@ using Bnfour.MusynxMods.SkinTweaks;
 [assembly: MelonAuthorColor(255, 128, 128, 128)]
 
 [assembly: AssemblyDescription("Extra features for some of the skins")]
-[assembly: AssemblyCopyright("bnfour 2024; open-source")]
+[assembly: AssemblyCopyright("bnfour 2024-2025; open-source")]

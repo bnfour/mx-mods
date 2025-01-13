@@ -9,4 +9,4 @@ using Bnfour.MusynxMods.Experimental;
 [assembly: MelonAuthorColor(255, 128, 128, 128)]
 
 [assembly: AssemblyDescription("Playground for experimenting. Not a real mod.")]
-[assembly: AssemblyCopyright("bnfour 2024; open-source")]
+[assembly: AssemblyCopyright("bnfour 2024-2025; open-source")]
