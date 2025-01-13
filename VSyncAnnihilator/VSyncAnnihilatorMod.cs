@@ -27,7 +27,7 @@ public class VSyncAnnihilatorMod : MelonMod
 
         if (QualitySettings.vSyncCount != 0)
         {
-            LoggerInstance.Warning("Selected settings preset has vSync on! Did you patch a preset and choose it?");
+            LoggerInstance.Warning("Settings preset has vSync on! Did you patch a preset and select it?");
             LoggerInstance.Warning("Disabling now, can cause lags.");
             Sudo(() => QualitySettings.vSyncCount = 0);
         }

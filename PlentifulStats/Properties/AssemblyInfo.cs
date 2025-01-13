@@ -9,4 +9,4 @@ using Bnfour.MusynxMods.PlentifulStats;
 [assembly: MelonAuthorColor(255, 128, 128, 128)]
 
 [assembly: AssemblyDescription("Extra features for the stats screen")]
-[assembly: AssemblyCopyright("bnfour 2024; open-source")]
+[assembly: AssemblyCopyright("bnfour 2024-2025; open-source")]
