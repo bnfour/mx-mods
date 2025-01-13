@@ -11,7 +11,7 @@ namespace Bnfour.MusynxMods.MenuTweaks.Patches;
 [HarmonyPatch(typeof(SongInfoPackageScript), "Update")]
 public class SongInfoPackageScriptUpdatePatch
 {
-    internal void Postfix(SongInfoPackageScript __instance)
+    internal static void Postfix(SongInfoPackageScript __instance)
     {
         if (!Melon<MenuTweaksMod>.Instance.OrdinalFixEnabled)
         {
