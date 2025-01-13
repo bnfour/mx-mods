@@ -142,6 +142,9 @@ Set to `false` to disable a feature. `AdvLongNoteScoring` controls scoring behav
 
 `STGBackgroundOpacity` controls the opacity of the background art. Has no effect if `STGBackground` is disabled.
 
+> [!TIP]  
+> The mod will notify you if it's configured to do nothing, and can be disabled.
+
 ## Menu tweaks
 Mod file: `MenuTweaks.dll`
 
@@ -170,6 +173,9 @@ Mute = true
 ```
 
 Set to `false` to disable a feature.
+
+> [!TIP]  
+> The mod will notify you if it's configured to do nothing, and can be disabled.
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
