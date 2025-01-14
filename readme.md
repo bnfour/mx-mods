@@ -6,7 +6,7 @@ Unofficial quality of life modifications for the PC version of the hit video gam
 - Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
-There are currently the following mods available in this repo:
+The following mods are currently available in this repo:
 
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
@@ -33,7 +33,7 @@ Mod file: `HiddenCursor.dll`
 
 This mod hides the cursor during gameplay, preventing stuff like this:
 
-![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/HiddenCursor/annoying-cursor.png)
+![sorry for potato quality -- this is a frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/HiddenCursor/annoying-cursor.png)
 
 The cursor is still shown when the game is paused, and in all other screens.
 
@@ -50,7 +50,6 @@ The statistics display is changed:
 | Before | After |
 | --- | --- |
 | ![i tend to get one great in any rhythm game i play](readme-images/PlentifulStats/vanilla-stats.png) | ![almost 122 and still one great smh my head](readme-images/PlentifulStats/cool-stats.png) |
-
 
 1. Blue exacts are counted separately from cyan exacts  
 (top middle of the pictures)
@@ -88,7 +87,7 @@ Set to `false` to disable a feature.
 ## Skin tweaks
 Mod file: `SkinTweaks.dll`
 
-This is a collection of improvements to in-game skins. All features can be turned on and off separately.
+This is a collection of improvements to some of the in-game skins. All features can be turned on and off separately.
 
 ### Available features
 
@@ -136,11 +135,13 @@ STGBackground = true
 STGBackgroundOpacity = 33
 ```
 
-Set to `false` to disable a feature. `AdvLongNoteScoring` controls scoring behavior (if it is enabled by `LongNoteScoring`):
+Set to `false` to disable a feature.
+
+`AdvLongNoteScoring` controls scoring behavior (if it is enabled by `LongNoteScoring`):
 - `true` to update on every combo tick (advanced scoring, see the third video demo)
 - `false` to update on long note releases (legacy scoring, see the second video demo)
 
-`STGBackgroundOpacity` controls the opacity of the background art. Has no effect if `STGBackground` is disabled.
+`STGBackgroundOpacity` controls the opacity of the background art. Has no effect if `STGBackground` is set to `false`.
 
 > [!TIP]  
 > The mod will notify you if it's configured to do nothing, and can be disabled.
@@ -229,7 +230,7 @@ The project contains the bare minimum for a mod that is successfully loaded; it 
 
 # Installation
 These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.6.1 Open-Beta of MelonLoader is supported.  
-Once you have MelonLoader installed, drop the DLLs of desired mods into the `Mods` folder. Remove to uninstall.  
+Once you have MelonLoader installed, drop the DLLs of desired mods into the `Mods` folder. Remove to uninstall.
 
 > [!NOTE]
 > For VSync annihilator (if you need it: probably not), refer to its own [installation section](#installation) for additional instructions.
@@ -284,7 +285,7 @@ This repo is a run-of-the-mill .NET solution targeting .NET 4.7.2.
 
 The only gotcha is that some libraries required to build it are not included because of file size (and licensing) issues. Your installation of MelonLoader will generate them for you.
 
-Copy everything from `MelonLoader/Managed`, `MelonLoader/net35`, and `MUSYNX_Data/Managed/` folders from the game install to the `references` folder of this repo. All the DLLs should be directly in the `references` folder, no subfolders.
+Copy everything from `MelonLoader/Managed`, `MelonLoader/net35`, and `MUSYNX_Data/Managed` folders from the game install to the `references` folder of this repo. All the DLLs should be directly in the `references` folder, no subfolders.
 
 This should cover the local references for all the projects. (Actually, **most** of the DLLs are not necessary to build the solution, I just don't plan on keeping an accurate and up to date list of required libraries.)
 
