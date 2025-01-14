@@ -44,7 +44,8 @@ public class UI0E_BgControllerGetSongBgSpritePatch
         backgroundBackgroundCamera.backgroundColor = Color.black;
         backgroundBackgroundCamera.enabled = true;
 
-        // set up the existing second camera for transparency to show output from the third one
+        // set up the existing second camera for transparency
+        // to show output from the third one below it
         var spaceshipsCamera = __instance.bgCamera.GetComponent<Camera>();
         spaceshipsCamera.clearFlags = CameraClearFlags.Depth;
         spaceshipsCamera.backgroundColor = Color.clear;

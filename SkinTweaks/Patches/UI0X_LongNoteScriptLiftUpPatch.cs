@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 
+/// <summary>
+/// Updates the display score when a long note is released early.
+/// </summary>
 [HarmonyPatch]
 public class UI0X_LongNoteScriptLiftUpPatch
 {

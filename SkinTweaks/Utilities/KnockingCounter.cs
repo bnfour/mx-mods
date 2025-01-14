@@ -4,7 +4,7 @@ namespace Bnfour.MusynxMods.SkinTweaks.Utilities;
 
 /// <summary>
 /// A helper to keep track whether there are active long notes present for advanced scoring.
-/// Can be null -- if so, the advances scoring is disabled.
+/// Can be null -- if so, the advanced scoring is disabled.
 /// </summary>
 public class KnockingCounter
 {

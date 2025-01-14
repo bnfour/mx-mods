@@ -9,6 +9,10 @@ using Bnfour.MusynxMods.SkinTweaks.Utilities;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 
+/// <summary>
+/// A patch that caches a script to use, and calls the display score updates
+/// every combo tick.
+/// </summary>
 [HarmonyPatch]
 public class UI0X_ComboScriptComboComboPatch
 {

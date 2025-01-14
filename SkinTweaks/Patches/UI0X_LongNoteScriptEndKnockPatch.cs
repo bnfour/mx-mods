@@ -7,6 +7,9 @@ using UnityEngine;
 
 namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 
+/// <summary>
+/// A patch that keeps track of long note releases.
+/// </summary>
 [HarmonyPatch]
 public class UI0X_LongNoteScriptEndKnockPatch
 {

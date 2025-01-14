@@ -8,7 +8,7 @@ using MelonLoader;
 namespace Bnfour.MusynxMods.MenuTweaks.Patches;
 
 /// <summary>
-/// A patch that mutes non-music menu sounds.
+/// A patch that mutes non-music menu sounds, if the mod configured to do so.
 /// </summary>
 [HarmonyPatch]
 public class SoundEffectScriptPlayStuffPatch

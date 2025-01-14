@@ -22,7 +22,6 @@ public class SongInfoPackageScriptUpdatePatch
         // might as well find the value in the newinfoText somewhere,
         // but it's not like using traverse tanks performance significantly
         var rankText = Traverse.Create(typeof(SteamLeaderBoardScript)).Property("miniLeaderBoardRank3").GetValue<Text>().text;
-        // only applies the change if original method fails
         if (rankText.EndsWith("11") || rankText.EndsWith("12") || rankText.EndsWith("13"))
         {
             // one of these acts as a shadow to another, don't know/care which is which
