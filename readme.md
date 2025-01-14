@@ -6,12 +6,13 @@ Unofficial quality of life modifications for the PC version of the hit video gam
 - Please read [FAQ](#frequently-asked-questions).
 
 # Mod list
-There are currently five mods available in this repo: four are interface enhancements, and another one can be used to disable vSync and other FPS caps that are otherwise baked into the game.
+The following mods are currently available in this repo:
 
 - [Optional options](#optional-options) — allows to skip the settings screen on song select, starting the game immediately
 - [Hidden cursor](#hidden-cursor) — hides the mouse cursor during gameplay
 - [Plentiful stats](#plentiful-stats) — provides some data for the stats screen
 - [Skin tweaks](#skin-tweaks) — improvements for some of the skins
+- [Menu tweaks](#menu-tweaks) — improvements for song selection menus
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
@@ -32,7 +33,7 @@ Mod file: `HiddenCursor.dll`
 
 This mod hides the cursor during gameplay, preventing stuff like this:
 
-![sorry for potato quality -- this is a still frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/HiddenCursor/annoying-cursor.png)
+![sorry for potato quality -- this is a frame from a video recording because i'm too lazy to disable cursor hiding in my screenshoter ¯\_(ツ)_/¯](readme-images/HiddenCursor/annoying-cursor.png)
 
 The cursor is still shown when the game is paused, and in all other screens.
 
@@ -49,7 +50,6 @@ The statistics display is changed:
 | Before | After |
 | --- | --- |
 | ![i tend to get one great in any rhythm game i play](readme-images/PlentifulStats/vanilla-stats.png) | ![almost 122 and still one great smh my head](readme-images/PlentifulStats/cool-stats.png) |
-
 
 1. Blue exacts are counted separately from cyan exacts  
 (top middle of the pictures)
@@ -87,7 +87,7 @@ Set to `false` to disable a feature.
 ## Skin tweaks
 Mod file: `SkinTweaks.dll`
 
-This is a collection of improvements to in-game skins. All features can be turned on and off separately.
+This is a collection of improvements to some of the in-game skins. All features can be turned on and off separately.
 
 ### Available features
 
@@ -98,7 +98,7 @@ This disables the moving mountain overlay images on Ink2D for cleaner looks. I a
 | --- | --- |
 | ![i tried to take similar screenshots, but it's not perfect](readme-images/SkinTweaks/UI0D_before.jpg) | ![once again, sorry for potato quality](readme-images/SkinTweaks/UI0D_after.jpg) |
 
-#### Improved long note scoring for Techno2D (and probably STG2D)
+#### Improved long note scoring for Techno2D and STG2D
 This updates the score display present on Techno2D and STG2D whenever the long note is played at least partially. On some charts, long notes at the very end make skin's display score inconsistent with final results:
 
 https://github.com/user-attachments/assets/445e69c4-f2a8-4841-8e70-336dbd5948b1
@@ -113,11 +113,14 @@ Or with the score being updated on every combo tick:
 
 https://github.com/user-attachments/assets/ec62569f-dde0-4d96-93f6-3837f2179225
 
-> [!WARNING]
-> STG2D support is not tested, as I do not currently own relevant DLC. It _should_ work as well as it does on Techno2D, but ¯\\\_(ツ)\_/¯, let me know if it's broken.
+#### Background image for STG2D
+This adds background for STG2D. The opacity of background is configurable using 0–100 percentage:
+| 0% or not enabled | 33% — default | 100% — fully opaque |
+| --- | --- | --- |
+| ![you can't really tell here, but it is the same image, completely transparent](readme-images/SkinTweaks/UI0E_bg_0.jpg) | ![it was suprisingly difficult to get this working](readme-images/SkinTweaks/UI0E_bg_33.jpg) | ![why](readme-images/SkinTweaks/UI0E_bg_100.jpg) |
 
 ### Configuration
-Both features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
 [Bnfour_SkinTweaks]
 # Removes moving white mountain overlays from Ink2D.
@@ -126,11 +129,54 @@ MountainRemoval = true
 LongNoteScoring = true
 # Updates the score display on Techno2D and STG2D for long notes every combo tick. If disabled, the score is updated on long note release.
 AdvLongNoteScoring = true
+# Enables display of background art for STG2D.
+STGBackground = true
+# Opacity for the background image, percent. 0 is fully transparent, 100 is fully opaque.
+STGBackgroundOpacity = 33
 ```
 
-Set to `false` to disable a feature. `AdvLongNoteScoring` controls scoring behavior (if it is enabled by `LongNoteScoring`):
+Set to `false` to disable a feature.
+
+`AdvLongNoteScoring` controls scoring behavior (if it is enabled by `LongNoteScoring`):
 - `true` to update on every combo tick (advanced scoring, see the third video demo)
 - `false` to update on long note releases (legacy scoring, see the second video demo)
+
+`STGBackgroundOpacity` controls the opacity of the background art. Has no effect if `STGBackground` is set to `false`.
+
+> [!TIP]  
+> The mod will notify you if it's configured to do nothing, and can be disabled.
+
+## Menu tweaks
+Mod file: `MenuTweaks.dll`
+
+This is a collection of changes for the song selection menus. All features can be toggled on and off independently.
+
+### Available features
+
+#### Fix for ordinal numbers
+This fixes suffixes for player rank sometimes not matching the number itself:
+| Menu | Before | After |
+| --- | --- | --- |
+| Main | ![i actually noticed this on a 11th rank](readme-images/MenuTweaks/ordinal-main-original.png) | ![but i have been pushed lower on the leaderboard since](readme-images/MenuTweaks/ordinal-main-fixed.png) |
+| List | ![i'm not _that_ good at this game](readme-images/MenuTweaks/ordinal-list-original.png) | ![7* are still my ceiling](readme-images/MenuTweaks/ordinal-list-fixed.png) |
+
+#### Mute
+This mutes the various beep/clang/whatever-you-hear sounds in the menu, leaving only the music preview. That's it.
+
+### Configuration
+All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+```toml
+[Bnfour_MenuTweaks]
+# Fixes suffixes for your rank in song selection menus.
+OrdinalsFix = true
+# Mutes menu sounds, leaving only song preview.
+Mute = true
+```
+
+Set to `false` to disable a feature.
+
+> [!TIP]  
+> The mod will notify you if it's configured to do nothing, and can be disabled.
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
@@ -184,7 +230,7 @@ The project contains the bare minimum for a mod that is successfully loaded; it 
 
 # Installation
 These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.6.1 Open-Beta of MelonLoader is supported.  
-Once you have MelonLoader installed, drop the DLLs of desired mods into the `Mods` folder. Remove to uninstall.  
+Once you have MelonLoader installed, drop the DLLs of desired mods into the `Mods` folder. Remove to uninstall.
 
 > [!NOTE]
 > For VSync annihilator (if you need it: probably not), refer to its own [installation section](#installation) for additional instructions.
@@ -239,7 +285,7 @@ This repo is a run-of-the-mill .NET solution targeting .NET 4.7.2.
 
 The only gotcha is that some libraries required to build it are not included because of file size (and licensing) issues. Your installation of MelonLoader will generate them for you.
 
-Copy everything from `MelonLoader/Managed`, `MelonLoader/net35`, and `MUSYNX_Data/Managed/` folders from the game install to the `references` folder of this repo. All the DLLs should be directly in the `references` folder, no subfolders.
+Copy everything from `MelonLoader/Managed`, `MelonLoader/net35`, and `MUSYNX_Data/Managed` folders from the game install to the `references` folder of this repo. All the DLLs should be directly in the `references` folder, no subfolders.
 
 This should cover the local references for all the projects. (Actually, **most** of the DLLs are not necessary to build the solution, I just don't plan on keeping an accurate and up to date list of required libraries.)
 
