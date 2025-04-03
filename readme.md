@@ -229,7 +229,7 @@ This is not a mod intended for using. Rather, it's a developmental test bed for 
 The project contains the bare minimum for a mod that is successfully loaded; it does nothing except posting a single message in the log.
 
 # Installation
-These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.6.1 Open-Beta of MelonLoader is supported.  
+These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.7.0 Open-Beta of MelonLoader is supported.  
 Once you have MelonLoader installed, drop the DLLs of desired mods into the `Mods` folder. Remove to uninstall.
 
 > [!NOTE]
@@ -267,18 +267,20 @@ Some of the mods override vanilla methods, so other mods that use these may not 
 _tl;dr: uninstall, and remember: NO WARRANTIES_
 
 If you just want to play the game, removing the mods (and maybe the modloader itself) is always an option.
-* Please make sure you're using supported (**0.6.1**) version of MelonLoader.
+* Please make sure you're using supported (**0.7.0**) version of MelonLoader.
 * Try to remove mods not from this repo.
 * Try to remove mods and/or modloader and check whether the vanilla game is broken too.
 
 If none of these helps, feel free to submit an issue, unless it's already have been reported.
 
 ### There's nothing in the console after the actual game starts?
-_tl;dr: `tail -f MelonLoader/Latest.log`_
+_tl;dr: update to MelonLoader 0.7.0, or `tail -f MelonLoader/Latest.log`_
 
-For whatever reason, the built-in MelonLoader console does not display logs after the game (as opposed to the config app) starts. This includes messages about loading the mods and any messages (warnings, errors) they produce.
+For whatever reason, the built-in MelonLoader 0.6.1's console does not display logs after the game (as opposed to the config app) starts. This includes messages about loading the mods and any messages (warnings, errors) they produce.
 
 The log file, located at `MelonLoader/Latest.log`, is still updated in real time. You can use any tool to monitor the file contents, such as ubiquitous `tail`, for example.
+
+The issue is also fixed in MelonLoader 0.7.0.
 
 # Building from source
 This repo is a run-of-the-mill .NET solution targeting .NET 4.7.2.
