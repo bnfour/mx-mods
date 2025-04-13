@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SkinTweaks", "SkinTweaks\Sk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MenuTweaks", "MenuTweaks\MenuTweaks.csproj", "{8D5CC248-BEB8-492C-A998-70A2AEE2CD46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickQuit", "QuickQuit\QuickQuit.csproj", "{451CAA95-660E-493D-90F7-8BA24BAACB42}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,5 +56,9 @@ Global
 		{8D5CC248-BEB8-492C-A998-70A2AEE2CD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D5CC248-BEB8-492C-A998-70A2AEE2CD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D5CC248-BEB8-492C-A998-70A2AEE2CD46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451CAA95-660E-493D-90F7-8BA24BAACB42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451CAA95-660E-493D-90F7-8BA24BAACB42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451CAA95-660E-493D-90F7-8BA24BAACB42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451CAA95-660E-493D-90F7-8BA24BAACB42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
