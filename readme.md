@@ -178,6 +178,15 @@ Set to `false` to disable a feature.
 > [!TIP]  
 > The mod will notify you if it's configured to do nothing, and can be disabled.
 
+## Quick quit and restart
+Mod file: `QuickQuit.dll`
+
+This small mod adds hotkeys to quickly quit or restart the current level without entering the pause menu:
+- `Backspace` to restart the level
+- `Delete` to quit to song selection
+
+The hotkeys work if the game can be paused (not too early nor too late into the level).
+
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
 
