@@ -117,7 +117,7 @@ https://github.com/user-attachments/assets/ec62569f-dde0-4d96-93f6-3837f2179225
 This adds background for STG2D. The opacity of background is configurable using 0–100 percentage:
 | 0% or not enabled | 33% — default | 100% — fully opaque |
 | --- | --- | --- |
-| ![you can't really tell here, but it is the same image, completely transparent](readme-images/SkinTweaks/UI0E_bg_0.jpg) | ![it was suprisingly difficult to get this working](readme-images/SkinTweaks/UI0E_bg_33.jpg) | ![why](readme-images/SkinTweaks/UI0E_bg_100.jpg) |
+| ![you can't really tell here, but it is the same image, completely transparent](readme-images/SkinTweaks/UI0E_bg_000.jpg) | ![it was suprisingly difficult to get this working](readme-images/SkinTweaks/UI0E_bg_033.jpg) | ![why](readme-images/SkinTweaks/UI0E_bg_100.jpg) |
 
 ### Configuration
 All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
@@ -177,6 +177,15 @@ Set to `false` to disable a feature.
 
 > [!TIP]  
 > The mod will notify you if it's configured to do nothing, and can be disabled.
+
+## Quick quit and restart
+Mod file: `QuickQuit.dll`
+
+This small mod adds hotkeys to quickly quit or restart the current level without entering the pause menu:
+- `Backspace` to restart the level
+- `Delete` to quit to song selection
+
+The hotkeys work if the game can be paused (not too early nor too late into the level).
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
