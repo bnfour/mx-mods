@@ -20,11 +20,6 @@ internal static class SongPlayersHelper
         //   (likely a typo that was copied)
         // so this method looks for both spellings
 
-        if (!songPlayer.GetType().Name.EndsWith("_SongPlayer"))
-        {
-            throw new System.Exception("Not a Song player passed.");
-        }
-
         traverse = Traverse.Create(songPlayer);
         var correctlySpelledField = traverse.Field("canPause");
 
@@ -34,14 +29,29 @@ internal static class SongPlayersHelper
             .GetValue<bool>();
     }
 
-    // these methods are supposed to accept a Traverse created in CanPause
-
+    /// <summary>
+    /// Restarts the song player's scene.
+    /// </summary>
+    /// <param name="songPlayerTraverse">Traverse to use; supposed to be provided
+    /// from <see cref="CanPause"/> called previously.</param>
     public static void Restart(Traverse songPlayerTraverse)
         => CallSceneChange(songPlayerTraverse, "Restart");
 
+    /// <summary>
+    /// Quits the song player's scene.
+    /// </summary>
+    /// <param name="songPlayerTraverse">Traverse to use; supposed to be provided
+    /// from <see cref="CanPause"/> called previously.</param>
     public static void Quit(Traverse songPlayerTraverse)
         => CallSceneChange(songPlayerTraverse, "BackToSelectScene");
 
+    /// <summary>
+    /// Internal method for scene changes. Does some extra work for smoother transition,
+    /// same for quit and restart -- because these are both scene changes.
+    /// </summary>
+    /// <param name="songPlayerTraverse">Traverse to use; supposed to be provided
+    /// from <see cref="CanPause"/> called previously.</param>
+    /// <param name="methodName">Method to use: "Restart" or "BackToSelectScene".</param>
     private static void CallSceneChange(Traverse songPlayerTraverse, string methodName)
     {
         // stop the BGM playing through the scene transition
