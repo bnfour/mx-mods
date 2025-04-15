@@ -10,7 +10,7 @@ namespace Bnfour.MusynxMods.QuickQuit.Patches;
 [HarmonyPatch(typeof(InputManager), "Init")]
 public class InputManagerInitPatch
 {
-    private static void Postfix()
+    internal static void Postfix()
     {
         Melon<QuickQuitMod>.Instance.ExtraInput.Init();
     }

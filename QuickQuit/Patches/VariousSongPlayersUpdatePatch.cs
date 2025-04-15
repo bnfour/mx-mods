@@ -17,7 +17,7 @@ namespace Bnfour.MusynxMods.QuickQuit.Patches;
 [HarmonyPatch]
 public class VariousSongPlayersUpdatePatch
 {
-    private static IEnumerable<MethodBase> TargetMethods()
+    internal static IEnumerable<MethodBase> TargetMethods()
     {
         // all Update methods of all UI<whatever>_SongPlayer classes there is
         return AccessTools.GetTypesFromAssembly(typeof(UI0_SongPlayer).Assembly)
@@ -28,19 +28,18 @@ public class VariousSongPlayersUpdatePatch
             .Cast<MethodBase>();
     }
 
-    private static void Postfix(MonoBehaviour __instance)
+    internal static void Postfix(MonoBehaviour __instance)
     {
         var input = Melon<QuickQuitMod>.Instance.ExtraInput;
         Traverse traverse;
-        // TODO implement a subset of pause features for a smoother transition,
-        // like stop the BGM playing
-        if (input.RestartDown && CanPauseChecker.CanPause(__instance, out traverse))
+
+        if (input.RestartDown && SongPlayersHelper.CanPause(__instance, out traverse))
         {
-            traverse.Method("Restart").GetValue();
+            SongPlayersHelper.Restart(traverse);
         }
-        else if (input.QuitDown && CanPauseChecker.CanPause(__instance, out traverse))
+        else if (input.QuitDown && SongPlayersHelper.CanPause(__instance, out traverse))
         {
-            traverse.Method("BackToSelectScene").GetValue();
+            SongPlayersHelper.Quit(traverse);
         }
     }
 }

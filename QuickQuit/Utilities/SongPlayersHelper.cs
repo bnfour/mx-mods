@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Bnfour.MusynxMods.QuickQuit.Utilities;
 
-internal static class CanPauseChecker
+internal static class SongPlayersHelper
 {
     /// <summary>
     /// Checks if the song player's state indicates that it can pause.
@@ -32,5 +32,19 @@ internal static class CanPauseChecker
                 ? correctlySpelledField
                 : traverse.Field("canPauese"))
             .GetValue<bool>();
+    }
+
+    // these methods are supposed to accept a Traverse created in CanPause
+
+    public static void Restart(Traverse songPlayerTraverse)
+        => CallSceneChange(songPlayerTraverse, "Restart");
+
+    public static void Quit(Traverse songPlayerTraverse)
+        => CallSceneChange(songPlayerTraverse, "BackToSelectScene");
+
+    private static void CallSceneChange(Traverse songPlayerTraverse, string methodName)
+    {
+        // TODO stop the bgm
+        songPlayerTraverse.Method(methodName).GetValue();
     }
 }
