@@ -55,8 +55,9 @@ internal static class SongPlayersHelper
     private static void CallSceneChange(Traverse songPlayerTraverse, string methodName)
     {
         // stop the BGM playing through the scene transition
-        // thankfully, the naming for this one is consistent
+        // thankfully, the naming for these is consistent
         songPlayerTraverse.Field("bgmAudioSourceCri").Method("Stop").GetValue();
+        songPlayerTraverse.Field("audioSourceCri").Method("Stop").GetValue();
 
         // call the actual scene change
         songPlayerTraverse.Method(methodName).GetValue();
