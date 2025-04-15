@@ -13,6 +13,7 @@ The following mods are currently available in this repo:
 - [Plentiful stats](#plentiful-stats) — provides some data for the stats screen
 - [Skin tweaks](#skin-tweaks) — improvements for some of the skins
 - [Menu tweaks](#menu-tweaks) — improvements for song selection menus
+- [Quick quit and restart](#quick-quit-and-restart) — adds in-game hotkeys
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
