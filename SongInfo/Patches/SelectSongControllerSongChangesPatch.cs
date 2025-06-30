@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 using HarmonyLib;
+using MelonLoader;
 
 namespace Bnfour.MusynxMods.SongInfo.Patches;
 
@@ -24,13 +25,17 @@ internal class SelectSongControllerSongChangesPatch
 
     internal static void Postfix(SelectSongController __instance, MethodBase __originalMethod)
     {
-        var songInfoCore = _coreByIndex.Invoke(__instance, [__instance.songIndex]);
+        var songInfoCore = _coreByIndex.Invoke(__instance, [__instance.songIndex]) as SongInfoCore;
 
-        // TODO get data from cache or data by songInfoCore
-        // SongInfoCore -> SongData? (returns null when data is n/a, like shop entry in the big menu)
+        var provider = Melon<SongInfoMod>.Instance.songDataProvider;
+        var data = provider.GetSongData(songInfoCore);
 
-        // update UI (which one is determined by method name)
-        // maybe in a helper class as well?
+        if (data == null)
+        {
+            return;
+        }
+
         var isBigMenu = __originalMethod.Name.Equals("ChangingSongBg");
+        Melon<SongInfoMod>.Logger.Msg($"{data.Duration}, {data.Bpm} BPM{(data.HasSv ? " SV!" : string.Empty)} in {(isBigMenu ? "big" : "smol")} menu xdd");
     }
 }

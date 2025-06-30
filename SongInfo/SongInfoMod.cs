@@ -1,8 +1,10 @@
 using MelonLoader;
 
+using Bnfour.MusynxMods.SongInfo.Utilities;
+
 namespace Bnfour.MusynxMods.SongInfo;
 
 public class SongInfoMod : MelonMod
 {
-    // TODO store the data cache in here?
+    internal readonly SongDataProvider songDataProvider = new();
 }
