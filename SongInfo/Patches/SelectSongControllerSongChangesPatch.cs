@@ -19,7 +19,9 @@ internal class SelectSongControllerSongChangesPatch
     {
         // called when the "big" menu changes songs/difficulties
         yield return AccessTools.Method(typeof(SelectSongController), "ChangingSongBg");
-        // called when the list menu changes songs/difficulties, seems to be called twice in a row when moving down
+        // called on 4K <-> 6K switches in the "big" menu
+        yield return AccessTools.Method(typeof(SelectSongController), "ChangingButtonMode");
+        // called when the list menu changes songs/difficulties/mode, seems to be called twice in a row when moving down
         yield return AccessTools.Method(typeof(SelectSongController), "ChangeShowSmall");
     }
 
@@ -35,7 +37,7 @@ internal class SelectSongControllerSongChangesPatch
             return;
         }
 
-        var isBigMenu = __originalMethod.Name.Equals("ChangingSongBg");
+        var isBigMenu = __originalMethod.Name.StartsWith("Changing");
         Melon<SongInfoMod>.Logger.Msg($"{data.Duration}, {data.Bpm} BPM{(data.HasSv ? " SV!" : string.Empty)} in {(isBigMenu ? "big" : "smol")} menu xdd");
     }
 }
