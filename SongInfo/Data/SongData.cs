@@ -3,7 +3,7 @@ namespace Bnfour.MusynxMods.SongInfo.Data;
 /// <summary>
 /// Data structure to hold cached data about a song.
 /// </summary>
-public class SongData
+public record SongData
 {
     /// <summary>
     /// Song's BPM, preformatted as a string. If BPM changes during the map,
