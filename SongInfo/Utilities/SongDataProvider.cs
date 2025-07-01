@@ -9,6 +9,9 @@ using Bnfour.MusynxMods.SongInfo.Data;
 
 namespace Bnfour.MusynxMods.SongInfo.Utilities;
 
+// a convenience shortcut
+using CacheType = SortedDictionary<int, SongData>;
+
 /// <summary>
 /// A class that manages extracting and storing song data.
 /// </summary>
@@ -20,7 +23,7 @@ public class SongDataProvider
     /// <summary>
     /// Saves the data received by parsing game files for reuse.
     /// </summary>
-    private SortedDictionary<int, SongData> Cache => _cache ??= LoadCache();
+    private CacheType Cache => _cache ??= LoadCache();
 
     /// <summary>
     /// A reference to the commonly used static class, originally unavailable outside of the game assembly.
@@ -36,7 +39,7 @@ public class SongDataProvider
     /// <summary>
     /// Backing field for the cache for lazy instantiation.
     /// </summary>
-    private SortedDictionary<int, SongData> _cache;
+    private CacheType _cache;
 
     /// <summary>
     /// If set, the cache will be re-saved to the file to persist between sessions.
@@ -125,7 +128,7 @@ public class SongDataProvider
     /// Loads existing cache from file, or returns an empty dict to use if file is not present.
     /// </summary>
     /// <returns>Existing cache, may be empty.</returns>
-    private SortedDictionary<int, SongData> LoadCache()
+    private CacheType LoadCache()
     {
         // TODO load
         return [];
