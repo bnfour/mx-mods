@@ -14,19 +14,27 @@ namespace Bnfour.MusynxMods.SongInfo.Utilities;
 /// </summary>
 public class SongDataProvider
 {
-    // saved for reuse
-    // getting this singleton instance is a bit tricky
-    private static readonly UserMemory _userMemory = typeof(UserMemory).GetProperty("Instance", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as UserMemory;
+    /// <summary>
+    /// Saves the data received by parsing game files for reuse.
+    /// </summary>
+    private SortedDictionary<int, SongData> Cache => _cache ??= LoadCache();
+
+    /// <summary>
+    /// A reference to the commonly used static class, originally unavailable outside of the game assembly.
+    /// </summary>
+    private UserMemory UserMemory
+        => _userMemory ??= typeof(UserMemory).GetProperty("Instance", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as UserMemory; 
+
+    /// <summary>
+    /// Backing field for the UserMemory instance for lazy instantiation.
+    /// </summary>
+    private static UserMemory _userMemory;
 
     /// <summary>
     /// Backing field for the cache for lazy instantiation.
     /// </summary>
     private SortedDictionary<int, SongData> _cache;
 
-    /// <summary>
-    /// Saves the data received by parsing game files for reuse.
-    /// </summary>
-    private SortedDictionary<int, SongData> Cache => _cache ??= LoadCache();
 
     /// <summary>
     /// Access point to the class. Used to retrieve the song data (maybe cached).
@@ -75,7 +83,7 @@ public class SongDataProvider
         // to get bpm and sv, we need to parse the actual map file:
         // first, we construct its path
         // 4 or 6, obviously
-        var buttonNumber = Traverse.Create(_userMemory).Field("buttonNumber").GetValue<int>();
+        var buttonNumber = Traverse.Create(UserMemory).Field("buttonNumber").GetValue<int>();
         var bmsCoreName = traverse.Field("bmsCoreName").GetValue<string>();
         // difficulty indicator
         var hardMode = traverse.Field("hardMode").GetValue<string>();
