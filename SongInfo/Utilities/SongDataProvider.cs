@@ -14,6 +14,9 @@ namespace Bnfour.MusynxMods.SongInfo.Utilities;
 /// </summary>
 public class SongDataProvider
 {
+
+    private const string _cacheFilename = "song_info_cache.json";
+
     /// <summary>
     /// Saves the data received by parsing game files for reuse.
     /// </summary>
@@ -23,7 +26,7 @@ public class SongDataProvider
     /// A reference to the commonly used static class, originally unavailable outside of the game assembly.
     /// </summary>
     private UserMemory UserMemory
-        => _userMemory ??= typeof(UserMemory).GetProperty("Instance", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as UserMemory; 
+        => _userMemory ??= typeof(UserMemory).GetProperty("Instance", BindingFlags.Static | BindingFlags.NonPublic).GetValue(null) as UserMemory;
 
     /// <summary>
     /// Backing field for the UserMemory instance for lazy instantiation.
@@ -35,6 +38,10 @@ public class SongDataProvider
     /// </summary>
     private SortedDictionary<int, SongData> _cache;
 
+    /// <summary>
+    /// If set, the cache will be re-saved to the file to persist between sessions.
+    /// </summary>
+    private bool _somethingAdded = false;
 
     /// <summary>
     /// Access point to the class. Used to retrieve the song data (maybe cached).
@@ -57,6 +64,7 @@ public class SongDataProvider
         }
         else
         {
+            _somethingAdded = true;
             var newInfo = GetDataFromFiles(songInfoCore);
             Cache[songId] = newInfo;
             return newInfo;
@@ -113,10 +121,24 @@ public class SongDataProvider
         };
     }
 
+    /// <summary>
+    /// Loads existing cache from file, or returns an empty dict to use if file is not present.
+    /// </summary>
+    /// <returns>Existing cache, may be empty.</returns>
     private SortedDictionary<int, SongData> LoadCache()
     {
         // TODO load
-        // (and also store)
         return [];
+    }
+
+    /// <summary>
+    /// Saves the current cache to the file if it was extended this session.
+    /// </summary>
+    public void SaveCache()
+    {
+        if (_somethingAdded)
+        {
+            // TODO if new values were inserted, serialize the cache to the file.
+        }
     }
 }

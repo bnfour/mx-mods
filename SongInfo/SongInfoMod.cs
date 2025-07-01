@@ -7,4 +7,9 @@ namespace Bnfour.MusynxMods.SongInfo;
 public class SongInfoMod : MelonMod
 {
     internal readonly SongDataProvider songDataProvider = new();
+
+    public override void OnApplicationQuit()
+    {
+        songDataProvider.SaveCache();
+    }
 }
