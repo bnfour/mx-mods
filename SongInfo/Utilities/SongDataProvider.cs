@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 
@@ -17,7 +19,6 @@ using CacheType = SortedDictionary<int, SongData>;
 /// </summary>
 public class SongDataProvider
 {
-
     private const string _cacheFilename = "song_info_cache.json";
 
     /// <summary>
@@ -125,23 +126,60 @@ public class SongDataProvider
     }
 
     /// <summary>
-    /// Loads existing cache from file, or returns an empty dict to use if file is not present.
-    /// </summary>
-    /// <returns>Existing cache, may be empty.</returns>
-    private CacheType LoadCache()
-    {
-        // TODO load
-        return [];
-    }
-
-    /// <summary>
     /// Saves the current cache to the file if it was extended this session.
     /// </summary>
     public void SaveCache()
     {
         if (_somethingAdded)
         {
-            // TODO if new values were inserted, serialize the cache to the file.
+            var fullPath = Path.Combine(Application.dataPath, _cacheFilename);
+
+            // convert or dict data to hashtables representation supported by MiniJSON via an intermediate dict:
+            // top level is string key -> another hashtable value
+            // inner hashtable is a serialization of SongData: string key -> string or bool value
+            var shenanigans = new Hashtable(Cache.ToDictionary(kvp => kvp.Key.ToString(), kvp => kvp.Value.SerializeForMiniJson()));
+
+            using (StreamWriter writer = new(fullPath, append: false))
+            {
+                writer.Write(MiniJSON.jsonEncode(shenanigans));
+            }
+        }
+    }
+
+    /// <summary>
+    /// Loads existing cache from file, or returns an empty dict to use if file is not present.
+    /// </summary>
+    /// <returns>Existing cache, may be empty.</returns>
+    private CacheType LoadCache()
+    {
+        var fullPath = Path.Combine(Application.dataPath, _cacheFilename);
+        if (File.Exists(fullPath))
+        {
+            // TODO error handling
+            // just return empty dict; overwrite the file?
+            using (StreamReader reader = new(fullPath))
+            {
+                // load a previously serialized hashtable via MiniJSON
+                var raw = reader.ReadToEnd();
+                var deserialized = MiniJSON.jsonDecode(raw) as Hashtable;
+
+                CacheType actualDict = [];
+
+                // convert it to our dictionary one entry at a time
+                foreach (string rawKey in deserialized.Keys)
+                {
+                    var key = int.Parse(rawKey);
+                    var entry = SongData.DeserializeFromMiniJson(deserialized[rawKey] as Hashtable);
+
+                    actualDict[key] = entry;
+                }
+
+                return actualDict;
+            }
+        }
+        else
+        {
+            return [];
         }
     }
 }

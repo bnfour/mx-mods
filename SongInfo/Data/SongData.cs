@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Bnfour.MusynxMods.SongInfo.Data;
 
 /// <summary>
@@ -20,4 +22,25 @@ public record SongData
     /// Indicates if the map has non-BPM scroll speed changes.
     /// </summary>
     public bool HasSv { get; set; }
+
+    // TODO comments
+
+    public Hashtable SerializeForMiniJson()
+        => new()
+        {
+            [nameof(Bpm)] = Bpm,
+            [nameof(Duration)] = Duration,
+            [nameof(HasSv)] = HasSv
+        };
+
+    public static SongData DeserializeFromMiniJson(Hashtable hashtable)
+    {
+        // TODO check keys, throw on mismatch
+        return new()
+        {
+            Bpm = (string)hashtable[nameof(Bpm)],
+            Duration = (string)hashtable[nameof(Duration)],
+            HasSv = (bool)hashtable[nameof(HasSv)]
+        };
+    }
 }
