@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -5,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 
 using HarmonyLib;
+using MelonLoader;
 using UnityEngine;
 
 using Bnfour.MusynxMods.SongInfo.Data;
@@ -76,7 +78,7 @@ public class SongDataProvider
     }
 
     /// <summary>
-    /// Gets song data from the game files. 
+    /// Gets song data from the game files.
     /// </summary>
     /// <remarks>
     /// Generally fast enough to be used every time (unlike that other game),
@@ -125,6 +127,8 @@ public class SongDataProvider
         };
     }
 
+    // TODO consider splitting ^- data extraction and -v cache management to separate classes
+
     /// <summary>
     /// Saves the current cache to the file if it was extended this session.
     /// </summary>
@@ -138,10 +142,18 @@ public class SongDataProvider
             // top level is string key -> another hashtable value
             // inner hashtable is a serialization of SongData: string key -> string or bool value
             var shenanigans = new Hashtable(Cache.ToDictionary(kvp => kvp.Key.ToString(), kvp => kvp.Value.SerializeForMiniJson()));
+            var serialized = MiniJSON.jsonEncode(shenanigans);
 
-            using (StreamWriter writer = new(fullPath, append: false))
+            if (!string.IsNullOrEmpty(serialized))
             {
-                writer.Write(MiniJSON.jsonEncode(shenanigans));
+                using (StreamWriter writer = new(fullPath, append: false))
+                {
+                    writer.Write(serialized);
+                }
+            }
+            else
+            {
+                Melon<SongInfoMod>.Logger.Error($"Unable to save cache file!");
             }
         }
     }
@@ -155,26 +167,34 @@ public class SongDataProvider
         var fullPath = Path.Combine(Application.dataPath, _cacheFilename);
         if (File.Exists(fullPath))
         {
-            // TODO error handling
-            // just return empty dict; overwrite the file?
-            using (StreamReader reader = new(fullPath))
+            // if _anything_ goes wrong,
+            // i-it's not that i wanted to reuse the data or anything, b-baka!!
+            try
             {
-                // load a previously serialized hashtable via MiniJSON
-                var raw = reader.ReadToEnd();
-                var deserialized = MiniJSON.jsonDecode(raw) as Hashtable;
-
-                CacheType actualDict = [];
-
-                // convert it to our dictionary one entry at a time
-                foreach (string rawKey in deserialized.Keys)
+                using (StreamReader reader = new(fullPath))
                 {
-                    var key = int.Parse(rawKey);
-                    var entry = SongData.DeserializeFromMiniJson(deserialized[rawKey] as Hashtable);
+                    // load a previously serialized hashtable via MiniJSON
+                    var raw = reader.ReadToEnd();
+                    var deserialized = MiniJSON.jsonDecode(raw) as Hashtable ?? throw new ApplicationException("Unable to deserialize cache data");
 
-                    actualDict[key] = entry;
+                    CacheType actualDict = [];
+
+                    // convert it to our dictionary one entry at a time
+                    foreach (string rawKey in deserialized.Keys)
+                    {
+                        var key = int.Parse(rawKey);
+                        var entry = SongData.DeserializeFromMiniJson(deserialized[rawKey] as Hashtable);
+                        actualDict[key] = entry;
+                    }
+                    return actualDict;
                 }
-
-                return actualDict;
+            }
+            catch
+            {
+                // if we're here, we're about to put an entry into the cache, so the misformed file will be overwritten
+                // TODO consider giving a chance to fix it?
+                Melon<SongInfoMod>.Logger.Error($"Unable to load cache file, it will be overwritten on exit!");
+                return [];
             }
         }
         else
