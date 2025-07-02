@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 
 namespace Bnfour.MusynxMods.SongInfo.Data;
@@ -23,8 +24,12 @@ public record SongData
     /// </summary>
     public bool HasSv { get; set; }
 
-    // TODO comments
+    #region serialization
 
+    /// <summary>
+    /// Converts the data in a record to a serialization-friendly format.
+    /// </summary>
+    /// <returns>A hashtable representation of public fields.</returns>
     public Hashtable SerializeForMiniJson()
         => new()
         {
@@ -33,9 +38,19 @@ public record SongData
             [nameof(HasSv)] = HasSv
         };
 
+    /// <summary>
+    /// Creates an instance from a serialization representation.
+    /// </summary>
+    /// <param name="hashtable">Object to get parameters from.</param>
+    /// <returns>An instance with the data from the hashtable.</returns>
     public static SongData DeserializeFromMiniJson(Hashtable hashtable)
     {
-        // TODO check keys, throw on mismatch
+        if (hashtable.Keys.Count != 3
+            || !(hashtable.ContainsKey(nameof(Bpm)) && hashtable.ContainsKey(nameof(Duration)) && hashtable.ContainsKey(nameof(HasSv))))
+        {
+            throw new ApplicationException("Missing and/or unexpected fields in hashtable");
+        }
+
         return new()
         {
             Bpm = (string)hashtable[nameof(Bpm)],
@@ -43,4 +58,6 @@ public record SongData
             HasSv = (bool)hashtable[nameof(HasSv)]
         };
     }
+
+    #endregion
 }
