@@ -12,12 +12,13 @@ namespace Bnfour.MusynxMods.SongInfo.Patches;
 [HarmonyPatch]
 internal class SelectSongControllerSongChangesPatch
 {
-    // saved for reuse, the original method is not directly accessible
+    // saved for reuse, the original methods are not directly accessible
     private static readonly MethodInfo _coreByIndex = typeof(SelectSongController).GetMethod("GetSongInfoCoreByIndex", BindingFlags.Instance | BindingFlags.NonPublic);
+    private static readonly MethodInfo _sipsByIndex = typeof(SelectSongController).GetMethod("GetSongInfoPackageByIndex", BindingFlags.Instance | BindingFlags.NonPublic);
 
     internal static IEnumerable<MethodBase> TargetMethods()
     {
-        // called when the "big" menu changes songs/difficulties
+        // called when the "big" menu changes songs/difficulty
         yield return AccessTools.Method(typeof(SelectSongController), "ChangingSongBg");
         // called on 4K <-> 6K switches in the "big" menu
         yield return AccessTools.Method(typeof(SelectSongController), "ChangingButtonMode");
@@ -28,16 +29,26 @@ internal class SelectSongControllerSongChangesPatch
     internal static void Postfix(SelectSongController __instance, MethodBase __originalMethod)
     {
         var songInfoCore = _coreByIndex.Invoke(__instance, [__instance.songIndex]) as SongInfoCore;
-
         var provider = Melon<SongInfoMod>.Instance.songDataProvider;
         var data = provider.GetSongData(songInfoCore);
-
+        // TODO check for shop, it displays data somehow -- it's not supposed to though
         if (data == null)
         {
             return;
         }
 
+        var msg = $"{data.Duration}, {data.Bpm} BPM{(data.HasSv ? " SV!" : string.Empty)}";
+
         var isBigMenu = __originalMethod.Name.StartsWith("Changing");
-        Melon<SongInfoMod>.Logger.Msg($"{data.Duration}, {data.Bpm} BPM{(data.HasSv ? " SV!" : string.Empty)} in {(isBigMenu ? "big" : "smol")} menu xdd");
+        if (isBigMenu)
+        {
+            var currentSips = _sipsByIndex.Invoke(__instance, [__instance.songIndex]) as SongInfoPackageScript;
+            currentSips.newinfoText[currentSips.newinfoText.Length - 1].text = msg;
+            currentSips.newinfoText[currentSips.newinfoText.Length - 2].text = msg;
+        }
+        else
+        {
+            Melon<SongInfoMod>.Logger.Msg($"soon: {msg}");
+        }
     }
 }
