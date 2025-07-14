@@ -9,6 +9,7 @@ namespace Bnfour.MusynxMods.SongInfo.Patches;
 [HarmonyPatch(nameof(SelectSongController), nameof(SelectSongController.SmallScene))]
 public class SelectSongControllerSmallScenePatch
 {
+    private const int OriginalTextIndex = 0;
     // TODO tweak position a bit?
     // offset from the original component
     private static readonly Vector3 _offset = new(-475, 10, 0);
@@ -16,16 +17,16 @@ public class SelectSongControllerSmallScenePatch
     internal static void Prefix(SelectSongController __instance)
     {
         // only add the custom textfield once per instance
-        if (__instance.SongComposerInfoText[__instance.SongComposerInfoText.Length - 1].name.StartsWith("bnPostfixClone"))
+        if (__instance.SongComposerInfoText[__instance.SongComposerInfoText.Length - 1].name.Equals("bnSmallMenuSongInfo"))
         {
             return;
         }
 
-        var clone = GameObject.Instantiate(__instance.SongComposerInfoText[0], __instance.SongComposerInfoText[0].transform.parent);
-        clone.name = "bnPostfixClone0";
+        var clone = GameObject.Instantiate(__instance.SongComposerInfoText[OriginalTextIndex], __instance.SongComposerInfoText[OriginalTextIndex].transform.parent);
+        clone.name = "bnSmallMenuSongInfo";
         clone.text = string.Empty;
         clone.rectTransform.anchoredPosition3D += _offset;
-
+        // for easy access
         __instance.SongComposerInfoText = [.. __instance.SongComposerInfoText, clone];
     }
 }
