@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 using HarmonyLib;
@@ -45,7 +46,7 @@ internal class SelectSongControllerSongChangesPatch
         }
         else
         {
-            Melon<SongInfoMod>.Logger.Msg($"soon: {msg}");
+            __instance.SongComposerInfoText[__instance.SongComposerInfoText.Length - 1].text = msg;
         }
     }
 }

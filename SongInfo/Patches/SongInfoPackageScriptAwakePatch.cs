@@ -1,5 +1,3 @@
-using System.Linq;
-
 using HarmonyLib;
 using UnityEngine;
 
@@ -19,7 +17,7 @@ public class SongInfoPackageScriptAwakePatch
     {
         // make sure only the prefab (that actual instances are cloned from) gets modified
         // if the modifications are already present, do nothing
-        if (__instance.newinfoText.Last().name.StartsWith("bnPostfix"))
+        if (__instance.newinfoText[__instance.newinfoText.Length - 1].name.StartsWith("bnPostfixClone"))
         {
             return;
         }
