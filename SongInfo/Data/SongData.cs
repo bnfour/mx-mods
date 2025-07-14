@@ -24,6 +24,9 @@ public record SongData
     /// </summary>
     public bool HasSv { get; set; }
 
+    public override string ToString()
+        => $"{Duration}, {Bpm} BPM{(HasSv ? " SV!" : string.Empty)}";
+
     #region serialization
 
     /// <summary>

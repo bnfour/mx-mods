@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 using HarmonyLib;
@@ -29,24 +28,26 @@ internal class SelectSongControllerSongChangesPatch
 
     internal static void Postfix(SelectSongController __instance, MethodBase __originalMethod)
     {
-        var songInfoCore = _coreByIndex.Invoke(__instance, [__instance.songIndex]) as SongInfoCore;
-        var provider = Melon<SongInfoMod>.Instance.songDataProvider;
-        var data = provider.GetSongData(songInfoCore);
-        // data is null for the shop entry
-        var msg = data != null
-            ? $"{data.Duration}, {data.Bpm} BPM{(data.HasSv ? " SV!" : string.Empty)}"
-            : string.Empty;
+        if (_coreByIndex.Invoke(__instance, [__instance.songIndex]) is SongInfoCore songInfoCore)
+        {
+            var provider = Melon<SongInfoMod>.Instance.songDataProvider;
+            var data = provider.GetSongData(songInfoCore);
+            // data is null for the shop entry
+            var msg = data?.ToString() ?? string.Empty;
 
-        var isBigMenu = __originalMethod.Name.StartsWith("Changing");
-        if (isBigMenu)
-        {
-            var currentSips = _sipsByIndex.Invoke(__instance, [__instance.songIndex]) as SongInfoPackageScript;
-            currentSips.newinfoText[currentSips.newinfoText.Length - 1].text = msg;
-            currentSips.newinfoText[currentSips.newinfoText.Length - 2].text = msg;
-        }
-        else
-        {
-            __instance.SongComposerInfoText[__instance.SongComposerInfoText.Length - 1].text = msg;
+            var isBigMenu = __originalMethod.Name.StartsWith("Changing");
+            if (isBigMenu)
+            {
+                if (_sipsByIndex.Invoke(__instance, [__instance.songIndex]) is SongInfoPackageScript currentSips)
+                {
+                    currentSips.newinfoText[currentSips.newinfoText.Length - 1].text = msg;
+                    currentSips.newinfoText[currentSips.newinfoText.Length - 2].text = msg;
+                }
+            }
+            else
+            {
+                __instance.SongComposerInfoText[__instance.SongComposerInfoText.Length - 1].text = msg;
+            }
         }
     }
 }
