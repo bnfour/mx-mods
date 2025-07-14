@@ -31,13 +31,10 @@ internal class SelectSongControllerSongChangesPatch
         var songInfoCore = _coreByIndex.Invoke(__instance, [__instance.songIndex]) as SongInfoCore;
         var provider = Melon<SongInfoMod>.Instance.songDataProvider;
         var data = provider.GetSongData(songInfoCore);
-        // TODO check for shop, it displays data somehow -- it's not supposed to though
-        if (data == null)
-        {
-            return;
-        }
-
-        var msg = $"{data.Duration}, {data.Bpm} BPM{(data.HasSv ? " SV!" : string.Empty)}";
+        // data is null for the shop entry
+        var msg = data != null
+            ? $"{data.Duration}, {data.Bpm} BPM{(data.HasSv ? " SV!" : string.Empty)}"
+            : string.Empty;
 
         var isBigMenu = __originalMethod.Name.StartsWith("Changing");
         if (isBigMenu)
