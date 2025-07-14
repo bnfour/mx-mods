@@ -33,6 +33,8 @@ public class SongInfoPackageScriptAwakePatch
         cloneOne.rectTransform.anchoredPosition3D = _basePosition + shadowOffset;
         cloneOne.rectTransform.sizeDelta = _size;
         cloneOne.alignment = TextAnchor.UpperLeft;
+        // set the shadow color from the song title's shadow -- it differs from the ranking panel
+        cloneOne.color = __instance.newinfoText[1].color;
 
         var cloneTwo = GameObject.Instantiate(__instance.newinfoText[14], __instance.newinfoText[0].transform.parent);
         cloneTwo.name = "bnPostfixClone14";
