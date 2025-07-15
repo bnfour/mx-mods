@@ -14,6 +14,7 @@ The following mods are currently available in this repo:
 - [Skin tweaks](#skin-tweaks) — improvements for some of the skins
 - [Menu tweaks](#menu-tweaks) — improvements for song selection menus
 - [Quick quit and restart](#quick-quit-and-restart) — adds in-game hotkeys
+- [Song info](#song-info) — adds song's duration and BPM to song selection menus
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options

@@ -13,6 +13,7 @@ OptionalOptions.dll : skips the settings when starting a song, unless Shift key 
 PlentifulStats.dll : additional stats on the result screen
 QuickQuit : backspace to restart the level, delete to quit it
 SkinTweaks.dll : changes to some of the skins
+SongInfo.dll : song duration and BPM in selection menus
 
 VSyncAnnihilator.dll : disables forced vSync, please please read the docs;
 (you probably don't need this one unless you know exactly what you're doing)
