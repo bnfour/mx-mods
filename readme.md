@@ -188,6 +188,60 @@ This small mod adds hotkeys to quickly quit or restart the current level without
 
 The hotkeys work if the game can be paused (not too early nor too late into the level).
 
+## Song info
+Mod file: `SongInfo.dll`
+
+This mod adds information about the song on the song selection screen: its duration, BPM, and whether it has scroll speed changes mid-track:
+
+| Default menu | List menu |
+| --- | --- |
+| general location image big | general location image small |
+| details big | details small |
+
+On this label:
+- Duration is displayed as `MM:SS`, like `01:34` — the value matches the one Techno2D skin displays, so it might not be completely accurate for certain songs.
+- Minimum and maximum BPM used in the map are shown — there might be changes to other BPM values within the range. Single number indicates no BPM changes throughout the map.
+- If there are _any_ scroll speed changes (not to be confused with BPM changes), the label will have `SV!` at the end. 
+
+### Cache details and (ab)use (advanced)
+This mod saves the data about the songs for future reuse in `MUSYNX_Data/song_info_cache.json` file. That file is saved on every game exit. There is currently no way to disable caching — if deleted, the file will be regenerated as long as the mod is active.
+
+<details>
+<summary>The cache can be edited manually for fun(?), but this is unsupported. Venture forth at your own risk.</summary>
+
+The file itself is a simple JSON dictionary:
+```jsonc
+{
+    "songId, like 124503": {
+        // pre-formatted as a string
+        "Duration": "02:42",
+        // ditto
+        "Bpm": "115",
+        "HasSv": false
+    },
+    // ... and so on, each difficulty for each mode can create an entry if visited,
+    // so, 6 entries per song at most, (EZ, HD, IN) × (4K, 6K)
+}
+```
+(the original JSON is not pretty-formatted for technical reasons)
+
+The dict's keys are internal song IDs (as strings), unique for mode/difficulty combo, because sometimes BPM and SV differ between difficulty levels.
+
+The BPM and duration are stored as an already formatted strings, and manual changes to those will be shown in-game. This is not really useful nor intended feature, but it works nonetheless. The text label supports rich text, so the [tags supported by the game's 2017.4 Unity version](https://docs.unity3d.com/2017.4/Documentation/Manual/StyledText.html) work. For example, an entry
+```json
+"137602":{"Duration":"<color=#ff00ff>04</color>:<color=#00ff00>16</color>", "Bpm":"170", "HasSv":false}
+```
+in the cache file will result in the following display for 4K HD 中华少女 · 终:
+
+![wow](readme-images/SongInfo/cache_edit_totally_useful.png)
+
+Notice that the text shadow is colored as well — this is officially unsupported. Of course, any arbitrary text can be put there, though the comma and "BPM" bits are hardcoded and will always be included.
+
+> [!WARNING]
+> If the cache file contains malformed JSON, it will be replaced with the new, from scratch cache on (regular) game exit.
+
+</details>
+
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`
 
