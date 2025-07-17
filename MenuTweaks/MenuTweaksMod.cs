@@ -23,7 +23,7 @@ public class MenuTweaksMod : MelonMod
 
         if (!OrdinalFixEnabled && !MenuMuteEnabled)
         {
-            LoggerInstance.Warning("No features of the mod enabled, it can be unistalled.");
+            LoggerInstance.Warning("No features of the mod enabled, it can be uninstalled.");
         }
     }
 }
