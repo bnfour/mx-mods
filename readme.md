@@ -14,6 +14,7 @@ The following mods are currently available in this repo:
 - [Skin tweaks](#skin-tweaks) — improvements for some of the skins
 - [Menu tweaks](#menu-tweaks) — improvements for song selection menus
 - [Quick quit and restart](#quick-quit-and-restart) — adds in-game hotkeys
+- [Song info](#song-info) — adds song's duration and BPM to song selection menus
 - [VSync annihilator](#vsync-annihilator) — allows the game to run without vSync, with optional custom FPS cap (you probably won't need this)
 
 ## Optional options
@@ -187,6 +188,60 @@ This small mod adds hotkeys to quickly quit or restart the current level without
 - `Delete` to quit to song selection
 
 The hotkeys work if the game can be paused (not too early nor too late into the level).
+
+## Song info
+Mod file: `SongInfo.dll`
+
+This mod adds essential data about the currently selected song: its duration, BPM, and whether it has scroll speed changes mid-track (because I get surprised by them every single time):
+
+| Default "big" menu | List menu |
+| --- | --- |
+| ![below the stars rating](readme-images/SongInfo/big_menu_general_location.png) | ![lower-left](readme-images/SongInfo/small_menu_general_location.png) |
+| ![it even has a drop shadow](readme-images/SongInfo/big_menu_detail.png)| ![positioning is pain](readme-images/SongInfo/small_menu_detail.png)|
+
+On this label:
+- Duration is displayed as `MM:SS`, like `01:34` — the value matches the one Techno2D skin displays, so it might not be completely accurate for certain songs.
+- Minimum and maximum BPM used in the map are shown — there might be changes to other BPM values within the range. Single number indicates no BPM changes throughout the map.
+- If there are _any_ scroll speed changes (not to be confused with BPM changes), the label will have `SV!` at the end. (SV allegedly stands for "Slider Velocity" in osu! terms) <!-- i just went "oh, that's how this bane of my existence is called" while watching one of the world cups -->
+
+### Cache details and (ab)use (advanced)
+This mod saves the data about the songs for future reuse in `MUSYNX_Data/song_info_cache.json` file. That file is saved on every game exit. There is currently no way to disable caching — if deleted, the file will be regenerated as long as the mod is active.
+
+<details>
+<summary>The cache can be edited manually for fun(?), but this is unsupported. Venture forth at your own risk.</summary>
+
+The file itself is a simple JSON dictionary:
+```jsonc
+{
+    "songId, like 124503": {
+        // pre-formatted as a string
+        "Duration": "02:42",
+        // ditto
+        "Bpm": "115",
+        "HasSv": false
+    },
+    // ... and so on, each difficulty for each mode can create an entry if visited,
+    // so, 6 entries per song at most, (EZ, HD, IN) × (4K, 6K)
+}
+```
+(the original JSON is not pretty-formatted for technical reasons)
+
+The dict's keys are internal song IDs (as strings), unique for mode/difficulty combo, because sometimes BPM and SV differ between difficulty levels.
+
+The BPM and duration are stored as an already formatted strings, and manual changes to those will be shown in-game. This is not really useful nor intended feature, but it works nonetheless. The text label supports rich text, so the [tags for Unity 2017.4](https://docs.unity3d.com/2017.4/Documentation/Manual/StyledText.html) should work. For example, an entry
+```json
+"137602":{"Duration":"<color=#ff00ff>04</color>:<color=#00ff00>16</color>", "Bpm":"170", "HasSv":false}
+```
+in the cache file will result in the following display for 4K HD 中华少女 · 终:
+
+![wow](readme-images/SongInfo/cache_edit_totally_useful.png)
+
+The color is applied to both text components — after all, this feature is officially unsupported (for now?)  
+Of course, any arbitrary text can be put there, though the comma and "BPM" bits are hardcoded and will always be included.
+
+**Please note:** if the cache file contains malformed JSON, it will be replaced with the regenerated valid cache on (regular) game exit.
+
+</details>
 
 ## VSync annihilator
 Mod file: `VSyncAnnihilator.dll`

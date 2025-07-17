@@ -29,7 +29,7 @@ internal static class ScoreUpdater
             _ => throw new ApplicationException("Unsupported skin's LongNoteScript is passed")
         };
 
-        // exctract the data necessary for score calculation
+        // extract the data necessary for score calculation
         var scoreScriptField = Traverse.Create(parentScript).Field("scoreScript");
 
         var accuracyCount = scoreScriptField.Field("accuracyCount").GetValue<int>();
