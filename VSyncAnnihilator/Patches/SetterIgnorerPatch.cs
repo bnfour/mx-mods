@@ -19,7 +19,7 @@ public class SetterIgnorerPatch
     private static IEnumerable<MethodBase> TargetMethods()
     {
         // there are some assignments to targetFrameRate of 60 and vSyncCount of 1 in the code,
-        // and we want to ignore these to keep custom setings
+        // and we want to ignore these to keep custom settings
         yield return AccessTools.PropertySetter(typeof(Application), nameof(Application.targetFrameRate));
         yield return AccessTools.PropertySetter(typeof(QualitySettings), nameof(QualitySettings.vSyncCount));
     }
