@@ -13,7 +13,7 @@ namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 [HarmonyPatch]
 public class UI0X_LongNoteScriptEndKnockPatch
 {
-    private static IEnumerable<MethodBase> TargetMethods()
+    internal static IEnumerable<MethodBase> TargetMethods()
     {
         yield return AccessTools.Method(typeof(UI0A_LongNoteScript), "EndKnock");
         yield return AccessTools.Method(typeof(UI0E_LongNoteScript), "EndKnock");
@@ -26,7 +26,7 @@ public class UI0X_LongNoteScriptEndKnockPatch
     // so in order to this patch to match this behaviour,
     // we need to monitor the value of that flag as well
 
-    private static void Prefix(MonoBehaviour __instance, out bool __state)
+    internal static void Prefix(MonoBehaviour __instance, out bool __state)
     {
         if (Melon<SkinTweaksMod>.Instance.LongNotesCustomScoring)
         {
@@ -39,7 +39,7 @@ public class UI0X_LongNoteScriptEndKnockPatch
         }
     }
 
-    private static void Postfix(MonoBehaviour __instance, bool __state, bool ___knocking)
+    internal static void Postfix(MonoBehaviour __instance, bool __state, bool ___knocking)
     {
         // whether the feature is enabled at all is checked by prefix,
         // __state being true means the actual method did nothing and/or this feature is disabled;

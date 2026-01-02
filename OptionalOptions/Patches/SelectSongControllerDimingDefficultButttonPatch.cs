@@ -3,8 +3,6 @@ using MelonLoader;
 
 namespace Bnfour.MusynxMods.OptionalOptions.Patches;
 
-// the method is only "used" outside this assembly
-#pragma warning disable IDE0051
 
 /// <summary>
 /// Patch to remove the darkening of the screen on switching to the options screen
@@ -14,7 +12,7 @@ namespace Bnfour.MusynxMods.OptionalOptions.Patches;
 [HarmonyPatch(typeof(SelectSongController), "DimingDefficultButton")]
 public class SelectSongControllerDimingDefficultButttonPatch
 {
-    private static void Prefix(SelectSongController __instance)
+    internal static void Prefix(SelectSongController __instance)
     {
         if (Melon<OptionalOptionsMod>.Instance.SkippingOptions)
         {
@@ -26,5 +24,3 @@ public class SelectSongControllerDimingDefficultButttonPatch
         }
     }
 }
-
-#pragma warning restore

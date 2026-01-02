@@ -38,7 +38,7 @@ public class PlentifulStatsMod : MelonMod
 
         if (!RToRestart && !SeparateExacts && !PrevBest && !EnNextFix)
         {
-            LoggerInstance.Warning("No features of the mod enabled, it can be unistalled.");
+            LoggerInstance.Warning("No features of the mod enabled, it can be uninstalled.");
         }
     }
 }
