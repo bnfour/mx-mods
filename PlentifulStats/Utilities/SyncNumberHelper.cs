@@ -16,8 +16,7 @@ internal static class SyncNumberHelper
     /// <returns>The same value, so it's on top of the stack like nothing happened.</returns>
     internal static int Store(int value)
     {
-        var instance = Melon<PlentifulStatsMod>.Instance;
-        instance.SyncNumber = value;
+        Melon<PlentifulStatsMod>.Instance.SyncNumber = value;
 
         return value;
     }

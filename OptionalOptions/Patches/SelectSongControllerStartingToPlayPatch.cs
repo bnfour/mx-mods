@@ -11,7 +11,7 @@ namespace Bnfour.MusynxMods.OptionalOptions.Patches;
 [HarmonyPatch(typeof(SelectSongController), "StartingToPlay")]
 public class SelectSongControllerStartingToPlayPatch
 {
-    private static void Prefix(ref float time)
+    internal static void Prefix(ref float time)
     {
         if (Melon<OptionalOptionsMod>.Instance.SkippingOptions)
         {

@@ -6,9 +6,6 @@ using UnityEngine;
 
 namespace Bnfour.MusynxMods.HiddenCursor.Patches;
 
-// both methods are only used by Harmony itself, not by anything in the assembly
-#pragma warning disable IDE0051
-
 // that's a ridiculous name, but at least it's accurate-ish
 /// <summary>
 /// Handles game (un)pausing: shows the cursor when the game is paused,
@@ -17,7 +14,7 @@ namespace Bnfour.MusynxMods.HiddenCursor.Patches;
 [HarmonyPatch]
 public class VariousSongPlayersPlayResumePlayPausePatch
 {
-    private static IEnumerable<MethodBase> TargetMethods()
+    internal static IEnumerable<MethodBase> TargetMethods()
     {
         // basically, this patch is for both PlayPause and PlayResume methods
         // of all the UI<whatever>_SongPlayer classes, which seem to be not related
@@ -29,7 +26,7 @@ public class VariousSongPlayersPlayResumePlayPausePatch
             .Cast<MethodBase>();
     }
 
-    private static void Postfix(MethodBase __originalMethod)
+    internal static void Postfix(MethodBase __originalMethod)
     {
         // PlayPause may return early without pausing the game,
         // notably before and after the actual song;
@@ -41,5 +38,3 @@ public class VariousSongPlayersPlayResumePlayPausePatch
         Cursor.visible = actuallyPaused;
     }
 }
-
-#pragma warning restore

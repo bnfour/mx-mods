@@ -9,7 +9,7 @@ namespace Bnfour.MusynxMods.OptionalOptions.Patches;
 [HarmonyPatch(typeof(SelectSpeedScript), nameof(SelectSpeedScript.EnterSpeedUI))]
 public class SelectSpeedScriptEnterSpeedUIPatch
 {
-    private static bool Prefix(SelectSpeedScript __instance)
+    internal static bool Prefix(SelectSpeedScript __instance)
     {
         var mod = Melon<OptionalOptionsMod>.Instance;
         if (mod.ShiftDown)

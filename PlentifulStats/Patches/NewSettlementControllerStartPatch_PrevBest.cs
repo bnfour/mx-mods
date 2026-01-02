@@ -44,12 +44,7 @@ public class NewSettlementControllerStartPatch_PrevBest
             y = 92,
             z = scoreBg.transform.localScale.z
         };
-        newScoreBg.transform.position = new Vector3
-        {
-            x = scoreBg.transform.position.x,
-            y = scoreBg.transform.position.y - 27,
-            z = scoreBg.transform.position.z
-        };
+        newScoreBg.transform.position += new Vector3(0, -27, 0);
 
 
         // the "SYNC.RATE" text, we'll need a copy for the new header
@@ -62,12 +57,7 @@ public class NewSettlementControllerStartPatch_PrevBest
         // so these offsets here and for other components
         // are the first values i got that received
         // "meh, serviceable enough" reaction from me
-        extraHeader.transform.position = new Vector3
-        {
-            x = originalHeader.transform.position.x + 3,
-            y = originalHeader.transform.position.y - 63,
-            z = originalHeader.transform.position.z
-        };
+        extraHeader.transform.position += new Vector3(3, -63, 0);
         // required for it to disappear properly
         __instance.UIText = __instance.UIText.AddToArray(extraHeader);
 
@@ -83,12 +73,7 @@ public class NewSettlementControllerStartPatch_PrevBest
         extraValue.text = prevBest > 0
             ? ((float)prevBest / 100).ToString("00.00") + "%"
             : "--";
-        extraValue.transform.position = new Vector3
-        {
-            x = originalHeader.transform.position.x + 326,
-            y = originalHeader.transform.position.y - 36,
-            z = originalHeader.transform.position.z
-        };
+        extraValue.transform.position += new Vector3(326, -36, 0);
         // required for it to disappear properly
         __instance.UIText = __instance.UIText.AddToArray(extraValue);
     }

@@ -31,9 +31,8 @@ public class VariousSongPlayersUpdatePatch
     internal static void Postfix(MonoBehaviour __instance)
     {
         var input = Melon<QuickQuitMod>.Instance.ExtraInput;
-        Traverse traverse;
 
-        if (input.RestartDown && SongPlayersHelper.CanPause(__instance, out traverse))
+        if (input.RestartDown && SongPlayersHelper.CanPause(__instance, out Traverse traverse))
         {
             SongPlayersHelper.Restart(traverse);
         }
