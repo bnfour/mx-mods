@@ -6,7 +6,7 @@ namespace Bnfour.MusynxMods.SongInfo.Patches;
 /// <summary>
 /// Patches the "big" menu UI to include text fields to display the custom data.
 /// </summary>
-[HarmonyPatch(nameof(SongInfoPackageScript), "Awake")]
+[HarmonyPatch(typeof(SongInfoPackageScript), "Awake")]
 public class SongInfoPackageScriptAwakePatch
 {
     private const int OriginalShadowIndex = 25;

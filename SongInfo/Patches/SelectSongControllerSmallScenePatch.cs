@@ -6,7 +6,7 @@ namespace Bnfour.MusynxMods.SongInfo.Patches;
 /// <summary>
 /// Patches the "small" menu UI to include a text field to display the custom data.
 /// </summary>
-[HarmonyPatch(nameof(SelectSongController), nameof(SelectSongController.SmallScene))]
+[HarmonyPatch(typeof(SelectSongController), nameof(SelectSongController.SmallScene))]
 public class SelectSongControllerSmallScenePatch
 {
     private const int OriginalTextIndex = 0;
