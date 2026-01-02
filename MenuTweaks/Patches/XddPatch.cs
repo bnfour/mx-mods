@@ -13,7 +13,7 @@ public class XddPatch
     internal static void Postfix(SongInfoPackageScript __instance)
     {
         // gets everything but the composer info
-        var texts = __instance.GetComponentsInChildren<Text>();
+        var texts = __instance.GetComponentsInChildren<Text>(true);
         foreach (var text in texts)
         {
             if (CloseEnough(text.color, Color.black))
