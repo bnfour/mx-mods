@@ -169,11 +169,11 @@ This mutes the various beep/clang/whatever-you-hear sounds in the menu, leaving 
 This makes text shadows in the big menu the same color, either dark gray or pure black which are both used in vanilla:
 | Mode | Image |
 | :---: | --- |
-| None<br/>(vanilla for comparison) | img |
-| Lighten darker shadows<br/>(default) | img |
-| Darken lighter shadows | img |
+| None<br/>(vanilla for comparison) | ![literally unplayable](readme-images/MenuTweaks/shadows-vanilla.png) |
+| Lighten darker shadows<br/>(default) | ![better](readme-images/MenuTweaks/shadows-lighten.png) |
+| Darken lighter shadows | ![also better](readme-images/MenuTweaks/shadows-darken.png) |
 
-Note that in vanilla, text on the left (song title, composer and/or illustrator info, Song info data) uses gray shadows, while text on the right ("World", "Ranking", "NN TH") uses black shadows. Literally unplayable.
+Note that in vanilla, text on the left (song title, composer and/or illustrator info, Song info data) uses gray shadows, while text on the right ("World", "Ranking", "NN TH") uses black shadows.
 
 ### Configuration
 All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
