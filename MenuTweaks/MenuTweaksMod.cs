@@ -1,6 +1,7 @@
 using MelonLoader;
 
 using Bnfour.MusynxMods.MenuTweaks.Data;
+using Bnfour.MusynxMods.MenuTweaks.Utilities;
 
 namespace Bnfour.MusynxMods.MenuTweaks;
 
@@ -17,6 +18,8 @@ public class MenuTweaksMod : MelonMod
     internal bool ShadowNormalizationEnabled => _shadowNormalizationEnabled.Value;
     internal TextShadowNormalization ShadowNormalizationMethod => _shadowNormalizationMethod.Value;
 
+    internal ShadowColorHelper shadowColorHelper;
+
     public override void OnInitializeMelon()
     {
         base.OnInitializeMelon();
@@ -31,7 +34,12 @@ public class MenuTweaksMod : MelonMod
         _shadowNormalizationMethod = _prefsCategory.CreateEntry("ShadowsFixMethod", TextShadowNormalization.Lighten,
             "Uniform shadow color", "What to do with the text shadows -- lighten the darker ones or darken the lighter ones to match the others.");
 
-        if (!OrdinalFixEnabled && !MenuMuteEnabled)
+        if (ShadowNormalizationEnabled)
+        {
+            shadowColorHelper = new(ShadowNormalizationMethod);
+        }
+
+        if (!OrdinalFixEnabled && !MenuMuteEnabled && !ShadowNormalizationEnabled)
         {
             LoggerInstance.Warning("No features of the mod enabled, it can be uninstalled.");
         }
