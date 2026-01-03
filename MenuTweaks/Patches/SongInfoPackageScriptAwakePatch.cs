@@ -1,17 +1,25 @@
 using System;
 using HarmonyLib;
+using MelonLoader;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Bnfour.MusynxMods.MenuTweaks.Patches;
 
 [HarmonyPatch(typeof(SongInfoPackageScript), "Awake")]
-public class XddPatch
+public class SongInfoPackageScriptAwakePatch
 {
     private static readonly Color LighterShadow = new(0.235f, 0.235f, 0.235f, 1.000f);
 
     internal static void Postfix(SongInfoPackageScript __instance)
     {
+        if (!Melon<MenuTweaksMod>.Instance.ShadowNormalizationEnabled)
+        {
+            return;
+        }
+
+        // TODO move most logic to util, only leave getting the Text refs to comb
+
         // gets everything but the composer info
         var texts = __instance.GetComponentsInChildren<Text>(true);
         foreach (var text in texts)
