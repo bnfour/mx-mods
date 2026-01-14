@@ -12,11 +12,13 @@ public class MenuTweaksMod : MelonMod
     private MelonPreferences_Entry<bool> _muteEnabled;
     private MelonPreferences_Entry<bool> _shadowNormalizationEnabled;
     private MelonPreferences_Entry<TextShadowNormalization> _shadowNormalizationMethod;
+    private MelonPreferences_Entry<bool> _noMissingInfWarpsEnabled;
 
     internal bool OrdinalFixEnabled => _ordinalsFixEnabled.Value;
     internal bool MenuMuteEnabled => _muteEnabled.Value;
     internal bool ShadowNormalizationEnabled => _shadowNormalizationEnabled.Value;
     internal TextShadowNormalization ShadowNormalizationMethod => _shadowNormalizationMethod.Value;
+    internal bool NoWarpsWhenInfMissingEnabled => _noMissingInfWarpsEnabled.Value;
 
     internal ShadowColorHelper shadowColorHelper;
 
@@ -33,13 +35,16 @@ public class MenuTweaksMod : MelonMod
             "Uniform shadow colors", "Makes text shadows in the big menu the same color.");
         _shadowNormalizationMethod = _prefsCategory.CreateEntry("ShadowsFixMethod", TextShadowNormalization.Lighten,
             "Uniform shadow color", "What to do with the text shadows -- lighten the darker ones or darken the lighter ones to match the others.");
+        _noMissingInfWarpsEnabled = _prefsCategory.CreateEntry("NoInfernoWarping", true,
+            "No song switch on lack of Inferno difficulty in list menu", "Prevent difficulty switch also changing the song when the selected song has no Inferno difficulty for the list (small) menu");
 
         if (ShadowNormalizationEnabled)
         {
             shadowColorHelper = new(ShadowNormalizationMethod);
         }
 
-        if (!OrdinalFixEnabled && !MenuMuteEnabled && !ShadowNormalizationEnabled)
+        if (!OrdinalFixEnabled && !MenuMuteEnabled && !ShadowNormalizationEnabled
+            && !NoWarpsWhenInfMissingEnabled)
         {
             LoggerInstance.Warning("No features of the mod enabled, it can be uninstalled.");
         }
