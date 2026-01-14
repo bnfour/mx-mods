@@ -192,7 +192,7 @@ Mute = true
 ShadowsFix = true
 # What to do with the text shadows -- lighten the darker ones or darken the lighter ones to match the others.
 ShadowsFixMethod = "Lighten"
-# Prevent difficulty switch also changing the song when the selected song has no Inferno difficulty for the list (small) menu
+# Prevents difficulty switch also changing the song when the selected song has no Inferno difficulty for the list (small) menu
 NoInfernoWarping = true
 ```
 

@@ -36,7 +36,7 @@ public class MenuTweaksMod : MelonMod
         _shadowNormalizationMethod = _prefsCategory.CreateEntry("ShadowsFixMethod", TextShadowNormalization.Lighten,
             "Uniform shadow color", "What to do with the text shadows -- lighten the darker ones or darken the lighter ones to match the others.");
         _noMissingInfWarpsEnabled = _prefsCategory.CreateEntry("NoInfernoWarping", true,
-            "No song switch on lack of Inferno difficulty in list menu", "Prevent difficulty switch also changing the song when the selected song has no Inferno difficulty for the list (small) menu");
+            "No song switch on lack of Inferno difficulty in list menu", "Prevents difficulty switch also changing the song when the selected song has no Inferno difficulty for the list (small) menu");
 
         if (ShadowNormalizationEnabled)
         {
