@@ -175,6 +175,11 @@ This makes text shadows in the big menu the same color, either dark gray or pure
 
 Note that in vanilla, text on the left (song title, composer and/or illustrator info, Song info data) uses gray shadows, while text on the right ("World", "Ranking", "NN TH") uses black shadows.
 
+#### No warping for songs with no Inferno difficulty in the list menu
+This prevents switching to another song when attempting to select Inferno difficulty for a song that lacks one. When this is on, pressing right on a Normal song with no Inferno version will do nothing, similar to pressing left on an Easy song.
+
+Only for the list (small) menu.
+
 ### Configuration
 All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
@@ -187,6 +192,8 @@ Mute = true
 ShadowsFix = true
 # What to do with the text shadows -- lighten the darker ones or darken the lighter ones to match the others.
 ShadowsFixMethod = "Lighten"
+# Prevent difficulty switch also changing the song when the selected song has no Inferno difficulty for the list (small) menu
+NoInfernoWarping = true
 ```
 
 Set boolean flags to `false` to disable a feature. `ShadowsFixMethod` accepts either `"Lighten"` or `"Darken"` (note the quotes) to specify the shadow color; has no effect if `ShadowsFix` is off.
