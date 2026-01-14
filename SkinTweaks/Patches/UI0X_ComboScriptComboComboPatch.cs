@@ -16,7 +16,7 @@ namespace Bnfour.MusynxMods.SkinTweaks.Patches;
 [HarmonyPatch]
 public class UI0X_ComboScriptComboComboPatch
 {
-    private static IEnumerable<MethodBase> TargetMethods()
+    internal static IEnumerable<MethodBase> TargetMethods()
     {
         yield return AccessTools.Method(typeof(UI0A_ComboScript), "ComboCombo");
         // the zero from UI0E is missing for some reason,
@@ -24,7 +24,7 @@ public class UI0X_ComboScriptComboComboPatch
         yield return AccessTools.Method(typeof(UIE_ComboScript), "ComboCombo");
     }
 
-    private static void Postfix(MonoBehaviour __instance)
+    internal static void Postfix(MonoBehaviour __instance)
     {
         var mod = Melon<SkinTweaksMod>.Instance;
         if (mod.LongNotesCustomScoring && mod.LongNotesAdvancedCustomScoring

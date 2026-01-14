@@ -1,0 +1,23 @@
+<Project>
+  <PropertyGroup>
+    <TargetFramework>net481</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>Bnfour.MusynxMods.$(MSBuildProjectName)</RootNamespace>
+  </PropertyGroup>
+
+  <!-- The following disables copying referenced dlls to the output folder -->
+  <ItemDefinitionGroup>
+    <PackageReference ExcludeAssets="runtime" />
+    <Reference Private="false" />
+  </ItemDefinitionGroup>
+
+  <ItemGroup Label="Common local references">
+    <Reference Include="../references/0Harmony.dll" />
+    <Reference Include="../references/MelonLoader.dll" />
+    
+    <Reference Include="../references/Assembly-CSharp.dll" />
+    
+    <Reference Include="../references/UnityEngine.dll" />
+    <Reference Include="../references/UnityEngine.CoreModule.dll" />
+  </ItemGroup>
+</Project>

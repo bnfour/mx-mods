@@ -1,24 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
-    <LangVersion>latest</LangVersion>
-    <RootNamespace>Bnfour.MusynxMods.PlentifulStats</RootNamespace>
-  </PropertyGroup>
-
-  <!-- The following disables copying referenced dlls to the output folder -->
-  <ItemDefinitionGroup>
-    <PackageReference ExcludeAssets="runtime" />
-    <Reference Private="false" />
-  </ItemDefinitionGroup>
-
+<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup Label="Local references">
-    <Reference Include="../references/MelonLoader.dll" />
-    <Reference Include="../references/Assembly-CSharp.dll" />
-    <Reference Include="../references/UnityEngine.dll" />
-    <Reference Include="../references/UnityEngine.CoreModule.dll" />
     <Reference Include="../references/UnityEngine.UI.dll" />
-    <Reference Include="../references/0Harmony.dll" />
   </ItemGroup>
-
 </Project>

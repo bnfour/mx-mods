@@ -119,7 +119,7 @@ https://github.com/user-attachments/assets/ec62569f-dde0-4d96-93f6-3837f2179225
 This adds background for STG2D. The opacity of background is configurable using 0–100 percentage:
 | 0% or not enabled | 33% — default | 100% — fully opaque |
 | --- | --- | --- |
-| ![you can't really tell here, but it is the same image, completely transparent](readme-images/SkinTweaks/UI0E_bg_000.jpg) | ![it was suprisingly difficult to get this working](readme-images/SkinTweaks/UI0E_bg_033.jpg) | ![why](readme-images/SkinTweaks/UI0E_bg_100.jpg) |
+| ![you can't really tell here, but it is the same image, completely transparent](readme-images/SkinTweaks/UI0E_bg_000.jpg) | ![it was surprisingly difficult to get this working](readme-images/SkinTweaks/UI0E_bg_033.jpg) | ![why](readme-images/SkinTweaks/UI0E_bg_100.jpg) |
 
 ### Configuration
 All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
@@ -165,6 +165,21 @@ This fixes suffixes for player rank sometimes not matching the number itself:
 #### Mute
 This mutes the various beep/clang/whatever-you-hear sounds in the menu, leaving only the music preview. That's it.
 
+#### Consistent text shadows
+This makes text shadows in the big menu the same color, either dark gray or pure black which are both used in vanilla:
+| Mode | Image |
+| :---: | --- |
+| None<br/>(vanilla for comparison) | ![literally unplayable](readme-images/MenuTweaks/shadows-vanilla.png) |
+| Lighten darker shadows<br/>(default) | ![better](readme-images/MenuTweaks/shadows-lighten.png) |
+| Darken lighter shadows | ![also better](readme-images/MenuTweaks/shadows-darken.png) |
+
+Note that in vanilla, text on the left (song title, composer and/or illustrator info, Song info data) uses gray shadows, while text on the right ("World", "Ranking", "NN TH") uses black shadows.
+
+#### No warping for songs with no Inferno difficulty in the list menu
+This prevents switching to another song when attempting to select Inferno difficulty for a song that lacks one. When this is on, pressing right on a Normal song with no Inferno version will do nothing, similar to pressing left on an Easy song.
+
+Only for the list (small) menu.
+
 ### Configuration
 All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
@@ -173,9 +188,15 @@ All features of the mod can be toggled on and off independently via MelonLoader'
 OrdinalsFix = true
 # Mutes menu sounds, leaving only song preview.
 Mute = true
+# Makes text shadows in the big menu the same color.
+ShadowsFix = true
+# What to do with the text shadows -- lighten the darker ones or darken the lighter ones to match the others.
+ShadowsFixMethod = "Lighten"
+# Prevents difficulty switch also changing the song when the selected song has no Inferno difficulty for the list (small) menu
+NoInfernoWarping = true
 ```
 
-Set to `false` to disable a feature.
+Set boolean flags to `false` to disable a feature. `ShadowsFixMethod` accepts either `"Lighten"` or `"Darken"` (note the quotes) to specify the shadow color; has no effect if `ShadowsFix` is off.
 
 > [!TIP]  
 > The mod will notify you if it's configured to do nothing, and can be disabled.
@@ -294,7 +315,7 @@ This is not a mod intended for using. Rather, it's a developmental test bed for 
 The project contains the bare minimum for a mod that is successfully loaded; it does nothing except posting a single message in the log.
 
 # Installation
-These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.7.0 Open-Beta of MelonLoader is supported.  
+These are [MelonLoader](https://melonwiki.xyz/) mods. In order to run these, you need to have it installed. Currently, 0.7.1 Open-Beta of MelonLoader is supported.  
 Once you have MelonLoader installed, drop the DLLs of desired mods into the `Mods` folder. Remove to uninstall.
 
 > [!NOTE]
@@ -312,7 +333,7 @@ Every published release is accompanied with SHA256 hashes of every DLL. MelonLoa
 ### Is this cheating?
 _tl;dr: no_
 
-The mods provide no advantage for the actual gameplay, only some convinence in in the menus (and maybe a fix for broken vSync framerate). You still have to git gud to earn high scores.
+The mods provide no advantage for the actual gameplay, only some convenience in in the menus (and maybe a fix for broken vSync framerate). You still have to git gud to earn high scores.
 
 Unless you count _any_ changes to the game for _any_ purpose as cheating, this is not cheating.
 
@@ -331,28 +352,28 @@ Some of the mods override vanilla methods, so other mods that use these may not 
 ### My game is broken because of you and your mods, how can I fix this and blame you?
 _tl;dr: uninstall, and remember: NO WARRANTIES_
 
-If you just want to play the game, removing the mods (and maybe the modloader itself) is always an option.
-* Please make sure you're using supported (**0.7.0**) version of MelonLoader.
+If you just want to play the game, removing the mods (and maybe the mod loader itself) is always an option.
+* Please make sure you're using supported (**0.7.1**) version of MelonLoader.
 * Try to remove mods not from this repo.
-* Try to remove mods and/or modloader and check whether the vanilla game is broken too.
+* Try to remove mods and/or mod loader and check whether the vanilla game is broken too.
 
 If none of these helps, feel free to submit an issue, unless it's already have been reported.
 
 ### There's nothing in the console after the actual game starts?
-_tl;dr: update to MelonLoader 0.7.0, or `tail -f MelonLoader/Latest.log`_
+_tl;dr: update to MelonLoader 0.7.0+, or `tail -f MelonLoader/Latest.log`_
 
 For whatever reason, the built-in MelonLoader 0.6.1's console does not display logs after the game (as opposed to the config app) starts. This includes messages about loading the mods and any messages (warnings, errors) they produce.
 
 The log file, located at `MelonLoader/Latest.log`, is still updated in real time. You can use any tool to monitor the file contents, such as ubiquitous `tail`, for example.
 
-The issue is also fixed in MelonLoader 0.7.0.
+The issue is also fixed in MelonLoader 0.7.0 and newer.
 
 # Building from source
 This repo is a run-of-the-mill .NET solution targeting .NET 4.7.2.
 
 The only gotcha is that some libraries required to build it are not included because of file size (and licensing) issues. Your installation of MelonLoader will generate them for you.
 
-Copy everything from `MelonLoader/Managed`, `MelonLoader/net35`, and `MUSYNX_Data/Managed` folders from the game install to the `references` folder of this repo. All the DLLs should be directly in the `references` folder, no subfolders.
+Copy everything from `MelonLoader/net35` and `MUSYNX_Data/Managed` folders from the game install to the `references` folder of this repo. All the DLLs should be directly into it, no subfolders.
 
 This should cover the local references for all the projects. (Actually, **most** of the DLLs are not necessary to build the solution, I just don't plan on keeping an accurate and up to date list of required libraries.)
 

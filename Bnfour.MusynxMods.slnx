@@ -1,0 +1,11 @@
+<Solution>
+  <Project Path="Experimental/Experimental.csproj" />
+  <Project Path="HiddenCursor/HiddenCursor.csproj" />
+  <Project Path="MenuTweaks/MenuTweaks.csproj" />
+  <Project Path="OptionalOptions/OptionalOptions.csproj" />
+  <Project Path="PlentifulStats/PlentifulStats.csproj" />
+  <Project Path="QuickQuit/QuickQuit.csproj" />
+  <Project Path="SkinTweaks/SkinTweaks.csproj" />
+  <Project Path="SongInfo/SongInfo.csproj" />
+  <Project Path="VSyncAnnihilator/VSyncAnnihilator.csproj" />
+</Solution>
