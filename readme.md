@@ -369,7 +369,7 @@ The log file, located at `MelonLoader/Latest.log`, is still updated in real time
 The issue is also fixed in MelonLoader 0.7.0 and newer.
 
 # Building from source
-This repo is a run-of-the-mill .NET solution targeting .NET 4.7.2.
+This repo is a run-of-the-mill .NET solution targeting .NET 4.8.1.
 
 The only gotcha is that some libraries required to build it are not included because of file size (and licensing) issues. Your installation of MelonLoader will generate them for you.
 
