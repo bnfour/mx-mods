@@ -1,7 +1,7 @@
 Please see https://github.com/bnfour/mx-mods for full information, most importantly, the checksums.
 ===================================================================================================
 
-Use these with MelonLoader 0.7.0
+Use these with MelonLoader 0.7.1
 --------------------------------
 
 The DLLs go into the Mods folder.
