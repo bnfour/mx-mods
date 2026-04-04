@@ -1,4 +1,4 @@
-Unofficial quality of life modifications for the PC version of the hit video game Musynx (stylized as MUSYNX, sometimes also known as Musync) using MelonLoader.
+Unofficial quality of life modifications for the PC version of the hit video game Musynx (stylized as MUSYNX, sometimes also known as Musync; the original one released in 2018, **not** Return) using MelonLoader.
 
 # Disclaimers
 - These mods are unofficial and are not associated with, related to, and/or endorsed by I-Inferno and/or Wave Game.
