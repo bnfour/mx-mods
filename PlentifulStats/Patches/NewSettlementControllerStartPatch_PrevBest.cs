@@ -73,7 +73,7 @@ public class NewSettlementControllerStartPatch_PrevBest
 
         var prevBest = Melon<PlentifulStatsMod>.Instance.SyncNumber;
         extraValue.text = prevBest > 0
-            ? "0.00%"
+            ? ((float)prevBest / 100).ToString("0.00") + "%"
             : "--";
         extraValue.transform.position = originalHeader.transform.position + new Vector3(326, -36, 0);
         // required for it to disappear properly
@@ -84,7 +84,10 @@ public class NewSettlementControllerStartPatch_PrevBest
         // ...but is it really worth it?
         // two texts being updated 20 times a second with a slight desync is definitely noticeable
         // if you know it's there and really look for it
-        MelonCoroutines.Start(ScoreAnimationCoroutine(prevBest, extraValue));
+        if (Melon<PlentifulStatsMod>.Instance.AnimatePrevBest)
+        {
+            MelonCoroutines.Start(ScoreAnimationCoroutine(prevBest, extraValue));
+        }
     }
 
     private static IEnumerator ScoreAnimationCoroutine(int prevBest, TMPro.TextMeshPro component)
