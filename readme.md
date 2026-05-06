@@ -56,7 +56,7 @@ The statistics display is changed:
 1. Blue exacts are counted separately from cyan exacts  
 (top middle of the pictures)
 2. Previous best score is shown alongside the current one  
-(bottom middle of the pictures)
+(bottom middle of the pictures, has an optional ticking up animation to match the rest of the numbers on the screen)
 
 #### Extra keybind
 R key can be used to restart the song alongside F1 key. Due to implementation quirks, works with the in-game pause menu, too!
@@ -82,9 +82,11 @@ SeparateExacts = true
 PrevBest = true
 # Fixes Next button switching to Chinese on 120+ scores.
 EnNextFix = true
+# Enables ticking up animation for the previous best score on the stats screen.
+AnimatePrevBest = true
 ```
 
-Set to `false` to disable a feature.
+Set to `false` to disable a feature. `AnimatePrevBest` controls the ticking up animation for the best score, and has no effect if `PrevBest` is disabled.
 
 ## Skin tweaks
 Mod file: `SkinTweaks.dll`

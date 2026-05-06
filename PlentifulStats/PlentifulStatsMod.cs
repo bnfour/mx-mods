@@ -8,11 +8,13 @@ public class PlentifulStatsMod : MelonMod
     private MelonPreferences_Entry<bool> _rToRestartEnabled;
     private MelonPreferences_Entry<bool> _separateExactsEnabled;
     private MelonPreferences_Entry<bool> _prevBestEnabled;
+    private MelonPreferences_Entry<bool> _prevBestAnimated;
     private MelonPreferences_Entry<bool> _nextButtonFixEnabled;
     // values to check in patches
     internal bool RToRestart => _rToRestartEnabled.Value;
     internal bool SeparateExacts => _separateExactsEnabled.Value;
     internal bool PrevBest => _prevBestEnabled.Value;
+    internal bool AnimatePrevBest => _prevBestAnimated.Value;
     internal bool EnNextFix => _nextButtonFixEnabled.Value;
 
     /// <summary>
@@ -33,6 +35,8 @@ public class PlentifulStatsMod : MelonMod
             "Separate exacts count", "Displays separate blue and cyan exacts counts.");
         _prevBestEnabled = _prefsCategory.CreateEntry("PrevBest", true,
             "Previous best", "Displays previous best score at the stats screen.");
+        _prevBestAnimated = _prefsCategory.CreateEntry("AnimatePrevBest", true,
+            "Animate previous best", "Enables ticking up animation for the previous best score on the stats screen.");
         _nextButtonFixEnabled = _prefsCategory.CreateEntry("EnNextFix", true,
             "Next button fix", "Fixes Next button switching to Chinese on 120+ scores.");
 

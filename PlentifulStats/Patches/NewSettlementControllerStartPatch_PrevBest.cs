@@ -1,3 +1,5 @@
+using System.Collections;
+
 using HarmonyLib;
 using MelonLoader;
 using UnityEngine;
@@ -71,11 +73,43 @@ public class NewSettlementControllerStartPatch_PrevBest
 
         var prevBest = Melon<PlentifulStatsMod>.Instance.SyncNumber;
         extraValue.text = prevBest > 0
-            ? ((float)prevBest / 100).ToString("00.00") + "%"
+            ? ((float)prevBest / 100).ToString("0.00") + "%"
             : "--";
         extraValue.transform.position = originalHeader.transform.position + new Vector3(326, -36, 0);
         // required for it to disappear properly
         __instance.UIText = __instance.UIText.AddToArray(extraValue);
+
+        // TODO this uses a separate timer and the changes are not synced to the rest of the changing UI;
+        // it should be possible to patch into RandomNum method to get in time updates,
+        // ...but is it really worth it?
+        // two texts being updated 20 times a second with a slight desync is definitely noticeable
+        // if you know it's there and really look for it
+        if (Melon<PlentifulStatsMod>.Instance.AnimatePrevBest)
+        {
+            MelonCoroutines.Start(ScoreAnimationCoroutine(prevBest, extraValue));
+        }
+    }
+
+    private static IEnumerator ScoreAnimationCoroutine(int prevBest, TMPro.TextMeshPro component)
+    {
+        // taken from the animation
+        const float animationEndTime = 2.7333f;
+        // clamp updates to 20 fps similar to vanilla random values
+        const float timeBetweenUpdates = (float)1 / 20;
+
+        float time = 0;
+        float lastUpdated = -1;
+        
+        while ((time += Time.deltaTime) < animationEndTime)
+        {
+            if (time - lastUpdated >= timeBetweenUpdates)
+            {
+                component.text = Mathf.SmoothStep(0, (float)prevBest / 100, time / animationEndTime).ToString("0.00") + "%";
+                lastUpdated = time;
+            }
+            yield return null;
+        }
+        component.text = ((float)prevBest / 100).ToString("0.00") + "%";
     }
 }
 
