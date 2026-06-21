@@ -69,13 +69,20 @@ public class NewSettlementControllerStartPatch_PrevBest
         var extraValue = UnityEngine.Object.Instantiate(originalValue, originalHeader.transform.parent);
         extraValue.name = "BnPrevBestValue";
 
-        var prevBest = Melon<PlentifulStatsMod>.Instance.SyncNumber;
+        var modInstance = Melon<PlentifulStatsMod>.Instance;
+
+        var prevBest = modInstance.SyncNumber;
         extraValue.text = prevBest > 0
             ? ((float)prevBest / 100).ToString("0.00") + "%"
             : "--";
         extraValue.transform.position = originalHeader.transform.position + new Vector3(326, -36, 0);
         // required for it to disappear properly
         __instance.UIText = __instance.UIText.AddToArray(extraValue);
+
+        if (modInstance.AnimatePrevBest)
+        {
+            // AnimationTick being not null triggers the text animation
+            modInstance.AnimationTick = 0;
+        }
     }
 }
-
