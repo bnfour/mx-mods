@@ -23,6 +23,13 @@ public class PlentifulStatsMod : MelonMod
     /// </summary>
     internal int SyncNumber { get; set; }
 
+    /// <summary>
+    /// Stores the amount of random text changes already occurred on stats screen
+    /// to base the best value ticking up in sync. If null, the feature is disabled,
+    /// or have already run its course for a given stats screen.
+    /// </summary>
+    internal int? AnimationTick { get; set; }
+
     public override void OnInitializeMelon()
     {
         base.OnInitializeMelon();

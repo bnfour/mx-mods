@@ -9,7 +9,7 @@ namespace Bnfour.MusynxMods.PlentifulStats.Patches;
 /// (If enabled via preferences)
 /// </summary>
 [HarmonyPatch(typeof(NewSettlementController), nameof(NewSettlementController.FalseBool))]
-public class NewSettlementControllerFalseBoolPatch
+public class NewSettlementControllerFalseBoolPatch_SeparateCyan
 {
     private static bool Prefix(int num, NewSettlementController __instance,
         // these are all private fields
