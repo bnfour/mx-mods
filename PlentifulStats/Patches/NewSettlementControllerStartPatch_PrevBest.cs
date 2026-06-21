@@ -2,6 +2,9 @@ using HarmonyLib;
 using MelonLoader;
 using UnityEngine;
 
+using Bnfour.MusynxMods.PlentifulStats.Data;
+using Bnfour.MusynxMods.PlentifulStats.Utilities;
+
 namespace Bnfour.MusynxMods.PlentifulStats.Patches;
 
 /// <summary>
@@ -25,7 +28,7 @@ public class NewSettlementControllerStartPatch_PrevBest
         // while hiding the original background
         var scoreBg = __instance.toBackDimRenderers[2];
         var newScoreBg = UnityEngine.Object.Instantiate(scoreBg, scoreBg.transform.parent);
-        newScoreBg.name = "BnScoreBg";
+        newScoreBg.name = Constants.CustomBgName;
         // remove text components from the clone
         var texts = newScoreBg.GetComponentsInChildren<TMPro.TextMeshPro>();
         foreach (var component in texts)
@@ -50,9 +53,8 @@ public class NewSettlementControllerStartPatch_PrevBest
         // the "SYNC.RATE" text, we'll need a copy for the new header
         var originalHeader = __instance.UIText[0];
         var extraHeader = UnityEngine.Object.Instantiate(originalHeader, originalHeader.transform.parent);
-        extraHeader.name = "BnPrevBestHeader";
-        // TODO consider non-English locales if the other texts are different
-        extraHeader.text = "SYNC.BEST";
+        extraHeader.name = Constants.CustomHeaderName;
+        extraHeader.text = Constants.CustomHeaderText;
         // it was not very fun moving all this stuff around,
         // so these offsets here and for other components
         // are the first values i got that received
@@ -67,19 +69,19 @@ public class NewSettlementControllerStartPatch_PrevBest
         var originalValue = __instance.UIText[6];
         // note the parent for the clone
         var extraValue = UnityEngine.Object.Instantiate(originalValue, originalHeader.transform.parent);
-        extraValue.name = "BnPrevBestValue";
+        extraValue.name = Constants.CustomValueName;
 
         var modInstance = Melon<PlentifulStatsMod>.Instance;
 
         var prevBest = modInstance.SyncNumber;
         extraValue.text = prevBest > 0
-            ? ((float)prevBest / 100).ToString("0.00") + "%"
+            ? ScoreFormatter.FormatSyncNumber(prevBest)
             : "--";
         extraValue.transform.position = originalHeader.transform.position + new Vector3(326, -36, 0);
         // required for it to disappear properly
         __instance.UIText = __instance.UIText.AddToArray(extraValue);
 
-        if (modInstance.AnimatePrevBest)
+        if (modInstance.AnimatePrevBest && prevBest > 0)
         {
             // AnimationTick being not null triggers the text animation
             modInstance.AnimationTick = 0;

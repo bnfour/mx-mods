@@ -1,8 +1,10 @@
 using System.Linq;
-
 using HarmonyLib;
 using MelonLoader;
 using UnityEngine;
+
+using Bnfour.MusynxMods.PlentifulStats.Data;
+using Bnfour.MusynxMods.PlentifulStats.Utilities;
 
 namespace Bnfour.MusynxMods.PlentifulStats.Patches;
 
@@ -30,9 +32,8 @@ public class NewSettlementControllerRandomNumPatch
             modInstance.AnimationTick++;
             var t = Mathf.Min(1, (float)modInstance.AnimationTick / MaximumTick);
 
-            __instance.UIText.FirstOrDefault(tmp => tmp.name == "BnPrevBestValue")?.text =
-                Mathf.SmoothStep(0, (float)modInstance.SyncNumber / 100, t)
-                .ToString("0.00") + "%";
+            __instance.UIText.FirstOrDefault(tmp => tmp.name == Constants.CustomValueName)?.text =
+                ScoreFormatter.FormatSyncNumber((int)Mathf.SmoothStep(0, modInstance.SyncNumber, t));
         }
     }
 }
