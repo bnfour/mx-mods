@@ -153,7 +153,7 @@ Set to `false` to disable a feature.
 ## Menu tweaks
 Mod file: `MenuTweaks.dll`
 
-This is a collection of changes for the song selection menus. All features can be toggled on and off independently.
+This is a collection of changes for the song selection menus. All features (except for the frame fix) can be toggled on and off independently.
 
 ### Available features
 
@@ -182,8 +182,17 @@ This prevents switching to another song when attempting to select Inferno diffic
 
 Only for the list (small) menu.
 
+#### Frame fixes
+This fixes some songs using frames different from other songs in their category. This is supposed to be a temporary fix until the game data itself is correct, and it's currently cannot be toggled off, as I expect to retire this fix relatively soon. Clueless.
+
+Anyway, this changes frames for:
+- Anökumene, both EZ and HD
+- Silence To Freeze, EZ
+- Can't it be true, EZ
+- Cipher : /2&//<|0, EZ
+
 ### Configuration
-All features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
+Most features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
 ```toml
 [Bnfour_MenuTweaks]
 # Fixes suffixes for your rank in song selection menus.
