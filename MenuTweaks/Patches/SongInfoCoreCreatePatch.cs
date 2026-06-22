@@ -19,7 +19,13 @@ public class SongInfoCoreCreatePatch
         // Anökumene EZ
         ["00_142101"] = "1",
         // Anökumene HD
-        ["00_142102"] = "2"
+        ["00_142102"] = "2",
+        // Silence To Freeze EZ
+        ["00_128401"] = "11",
+        // Can't it be true EZ
+        ["00_129001"] = "11",
+        // Cipher : /2&//<|0 EZ
+        ["00_130601"] = "11"
     };
 
     internal static void Prefix(string[] songCoreStrs)
