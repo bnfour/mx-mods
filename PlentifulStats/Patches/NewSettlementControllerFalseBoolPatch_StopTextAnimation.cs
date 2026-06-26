@@ -22,8 +22,11 @@ public class NewSettlementControllerFalseBoolPatch_StopTextAnimation
             var mod = Melon<PlentifulStatsMod>.Instance;
             mod.AnimationTick = null;
 
-            __instance.UIText.FirstOrDefault(tmp => tmp.name == Constants.CustomValueName)?.text
-                = ScoreFormatter.FormatSyncNumber(mod.SyncNumber);
+            if (mod.SyncNumber > 0)
+            {
+                __instance.UIText.FirstOrDefault(tmp => tmp.name == Constants.CustomValueName)?.text
+                    = ScoreFormatter.FormatSyncNumber(mod.SyncNumber);
+            }
         }
     }
 }
