@@ -190,6 +190,7 @@ Anyway, this changes frames for:
 - Silence To Freeze, EZ
 - Can't it be true, EZ
 - Cipher : /2&//<|0, EZ
+- Red Wave (Rave), all three difficulty levels
 
 ### Configuration
 Most features of the mod can be toggled on and off independently via MelonLoader's preferences file, `UserData/MelonPreferences.cfg`. Launching the game with the mod installed should create the following section in the file:
