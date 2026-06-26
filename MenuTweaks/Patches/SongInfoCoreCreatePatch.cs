@@ -25,7 +25,13 @@ public class SongInfoCoreCreatePatch
         // Can't it be true EZ
         ["00_129001"] = "11",
         // Cipher : /2&//<|0 EZ
-        ["00_130601"] = "11"
+        ["00_130601"] = "11",
+        // Red R/Wave EZ
+        ["00_148001"] = "1",
+        // Red R/Wave HD
+        ["00_148002"] = "2",
+        // Red R/Wave IN
+        ["00_148003"] = "2",
     };
 
     internal static void Prefix(string[] songCoreStrs)
