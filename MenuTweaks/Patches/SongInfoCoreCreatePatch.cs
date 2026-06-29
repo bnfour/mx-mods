@@ -26,11 +26,11 @@ public class SongInfoCoreCreatePatch
         ["00_129001"] = "11",
         // Cipher : /2&//<|0 EZ
         ["00_130601"] = "11",
-        // Red R/Wave EZ
+        // Red Rave EZ
         ["00_148001"] = "1",
-        // Red R/Wave HD
+        // Red Rave HD
         ["00_148002"] = "2",
-        // Red R/Wave IN
+        // Red Rave IN
         ["00_148003"] = "2",
     };
 
